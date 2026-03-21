@@ -1,0 +1,263 @@
+asyncapi: 2.6.0
+info:
+  title: Runway Characters Realtime Events
+  description: >-
+    The Runway Characters realtime event interface describes the WebRTC-based
+    communication protocol for live conversational avatar sessions powered by
+    GWM-1. Once a realtime session is created via the REST API, clients connect
+    to a WebRTC room and exchange audio, video, and data channel messages with
+    the avatar in real time. Sessions support bidirectional audio and video
+    streams with a maximum duration of 5 minutes.
+  version: '2024-11-06'
+  contact:
+    name: Runway Support
+    url: https://support.runwayml.com/
+servers:
+  realtimeServer:
+    url: '{serverUrl}'
+    protocol: wss
+    description: >-
+      WebRTC signaling server for realtime avatar sessions. The server URL is
+      provided dynamically when a session is created via the REST API.
+    variables:
+      serverUrl:
+        description: >-
+          The WebRTC server URL returned by the POST /v1/realtime_sessions
+          endpoint.
+    security:
+      - sessionToken: []
+channels:
+  /session/audio:
+    description: >-
+      Bidirectional audio channel for real-time voice communication between the
+      user and the avatar. The user sends microphone audio, and the avatar
+      responds with synthesized speech audio.
+    publish:
+      operationId: sendUserAudio
+      summary: Send user audio to avatar
+      description: >-
+        User sends their microphone audio stream to the avatar for processing.
+        The avatar listens, interprets the speech, and formulates a response.
+      message:
+        $ref: '#/components/messages/AudioStream'
+    subscribe:
+      operationId: receiveAvatarAudio
+      summary: Receive avatar audio response
+      description: >-
+        The avatar sends synthesized speech audio back to the user as part of
+        the conversational interaction.
+      message:
+        $ref: '#/components/messages/AudioStream'
+  /session/video:
+    description: >-
+      Video channel carrying the avatar's real-time generated video stream to
+      the user. The avatar produces photorealistic or animated video frames
+      showing facial expressions, lip movements, and gestures synchronized
+      with the conversation.
+    subscribe:
+      operationId: receiveAvatarVideo
+      summary: Receive avatar video stream
+      description: >-
+        The avatar sends a continuous video stream showing the character's face,
+        expressions, and lip movements synchronized with the audio response.
+      message:
+        $ref: '#/components/messages/VideoStream'
+  /session/data:
+    description: >-
+      Data channel for exchanging session control messages and metadata between
+      the client and server, including session state changes, errors, and
+      transcript data.
+    publish:
+      operationId: sendControlMessage
+      summary: Send session control message
+      description: >-
+        Client sends control messages to manage the session, such as mute/unmute
+        or session termination signals.
+      message:
+        $ref: '#/components/messages/SessionControlMessage'
+    subscribe:
+      operationId: receiveSessionEvent
+      summary: Receive session event
+      description: >-
+        The server sends session events including state transitions, transcript
+        updates, and error notifications.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/SessionStateEvent'
+          - $ref: '#/components/messages/TranscriptEvent'
+          - $ref: '#/components/messages/SessionErrorEvent'
+components:
+  securitySchemes:
+    sessionToken:
+      type: httpApiKey
+      name: token
+      in: query
+      description: >-
+        Session authentication token returned by the POST /v1/realtime_sessions
+        endpoint. This token can only be used once. If the WebRTC connection
+        fails after the token is consumed, a new session must be created.
+  messages:
+    AudioStream:
+      name: AudioStream
+      title: Audio Stream
+      summary: >-
+        Real-time audio data for bidirectional voice communication.
+      contentType: audio/opus
+      payload:
+        type: string
+        format: binary
+        description: >-
+          Raw audio data encoded in Opus format for low-latency voice
+          transmission over WebRTC.
+    VideoStream:
+      name: VideoStream
+      title: Video Stream
+      summary: >-
+        Real-time video frames from the avatar showing facial expressions and
+        lip movements synchronized with speech.
+      contentType: video/vp8
+      payload:
+        type: string
+        format: binary
+        description: >-
+          Encoded video frames showing the avatar's real-time generated
+          appearance and movements.
+    SessionControlMessage:
+      name: SessionControlMessage
+      title: Session Control Message
+      summary: >-
+        Client-initiated control message for managing session behavior.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SessionControl'
+    SessionStateEvent:
+      name: SessionStateEvent
+      title: Session State Event
+      summary: >-
+        Server-sent event indicating a change in session state.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SessionState'
+    TranscriptEvent:
+      name: TranscriptEvent
+      title: Transcript Event
+      summary: >-
+        Server-sent event containing transcript data from the conversation,
+        including both user speech and avatar responses.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/Transcript'
+    SessionErrorEvent:
+      name: SessionErrorEvent
+      title: Session Error Event
+      summary: >-
+        Server-sent event indicating an error occurred during the session.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SessionError'
+  schemas:
+    SessionControl:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          description: >-
+            The type of control action to perform.
+          enum:
+            - mute
+            - unmute
+            - end_session
+        metadata:
+          type: object
+          description: >-
+            Optional metadata associated with the control action.
+          additionalProperties: true
+    SessionState:
+      type: object
+      required:
+        - type
+        - state
+        - timestamp
+      properties:
+        type:
+          type: string
+          description: >-
+            The event type identifier.
+          const: session_state
+        state:
+          type: string
+          description: >-
+            The current state of the session.
+          enum:
+            - connecting
+            - connected
+            - speaking
+            - listening
+            - thinking
+            - ended
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The timestamp when the state change occurred.
+    Transcript:
+      type: object
+      required:
+        - type
+        - role
+        - text
+        - timestamp
+      properties:
+        type:
+          type: string
+          description: >-
+            The event type identifier.
+          const: transcript
+        role:
+          type: string
+          description: >-
+            The speaker role for this transcript segment.
+          enum:
+            - user
+            - avatar
+        text:
+          type: string
+          description: >-
+            The transcribed text of the spoken content.
+        isFinal:
+          type: boolean
+          description: >-
+            Whether this transcript segment is final or still being updated
+            as more audio is processed.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The timestamp when this transcript segment was generated.
+    SessionError:
+      type: object
+      required:
+        - type
+        - error
+        - timestamp
+      properties:
+        type:
+          type: string
+          description: >-
+            The event type identifier.
+          const: session_error
+        error:
+          type: string
+          description: >-
+            A human-readable description of the error.
+        code:
+          type: string
+          description: >-
+            A machine-readable error code.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The timestamp when the error occurred.

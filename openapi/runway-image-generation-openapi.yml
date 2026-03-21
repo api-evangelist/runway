@@ -1,0 +1,225 @@
+openapi: 3.1.0
+info:
+  title: Runway Image Generation API
+  description: >-
+    The Runway Image Generation API provides a text-to-image endpoint that
+    enables developers to generate high-quality images from text prompts using
+    Runway's Gen-4 Image model. The API accepts text descriptions and produces
+    images as output, allowing integration of AI-powered image generation into
+    applications, products, and platforms. Like the video API, it uses
+    asynchronous task processing and Bearer token authentication.
+  version: '2024-11-06'
+  contact:
+    name: Runway Support
+    url: https://support.runwayml.com/
+  termsOfService: https://runwayml.com/terms-of-use
+externalDocs:
+  description: Runway API Documentation
+  url: https://docs.dev.runwayml.com/api/
+servers:
+  - url: https://api.dev.runwayml.com/v1
+    description: Production Server
+tags:
+  - name: Text to Image
+    description: >-
+      Generate high-quality images from text prompts using the Gen-4 Image model.
+  - name: Tasks
+    description: >-
+      Retrieve status and output of asynchronous generation tasks.
+security:
+  - bearerAuth: []
+paths:
+  /text_to_image:
+    post:
+      operationId: createTextToImage
+      summary: Create text-to-image generation task
+      description: >-
+        Starts a new asynchronous task to generate an image from a text prompt
+        using the Gen-4 Image model. The prompt describes what should appear in
+        the generated image. Returns a task ID that can be polled for completion.
+      tags:
+        - Text to Image
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToImageRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /tasks/{id}:
+    get:
+      operationId: getTask
+      summary: Retrieve task status and output
+      description: >-
+        Retrieves the current status and output of an asynchronous image
+        generation task by its unique identifier. Poll this endpoint until the
+        task status indicates completion. When a task succeeds, the response
+        includes output URLs linking to the generated image.
+      tags:
+        - Tasks
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: Task status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        API key passed via the HTTP Authorization header using the Bearer scheme.
+        Obtain your API key from the Runway Developer Portal at
+        https://dev.runwayml.com/.
+  parameters:
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: >-
+        API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+          - '2024-11-06'
+    TaskId:
+      name: id
+      in: path
+      required: true
+      description: >-
+        The unique identifier of the task, returned when the task was created.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    TextToImageRequest:
+      type: object
+      required:
+        - model
+        - promptText
+      properties:
+        model:
+          type: string
+          description: >-
+            The model to use for image generation. Currently supports the
+            gen4_image model.
+          enum:
+            - gen4_image
+        promptText:
+          type: string
+          description: >-
+            A text description of up to 1000 characters that describes in detail
+            what should appear in the generated output image.
+          maxLength: 1000
+        ratio:
+          type: string
+          description: >-
+            The aspect ratio of the output image. Supported landscape ratios
+            include 1280:720, 1584:672, 1104:832. Portrait ratios include
+            720:1280, 832:1104. Square ratio is 960:960.
+          enum:
+            - '1280:720'
+            - '1584:672'
+            - '1104:832'
+            - '720:1280'
+            - '832:1104'
+            - '960:960'
+    TaskCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: >-
+            The unique identifier for the created task. Use this ID to poll
+            the task status endpoint.
+    TaskResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: >-
+            The unique identifier of the task.
+        status:
+          type: string
+          description: >-
+            The current status of the task.
+          enum:
+            - PENDING
+            - PROCESSING
+            - SUCCEEDED
+            - FAILED
+            - CANCELLED
+        createdAt:
+          type: string
+          format: date-time
+          description: >-
+            The timestamp when the task was created.
+        output:
+          type: array
+          description: >-
+            One or more URLs linking to the generated output image. Only present
+            when the task status is SUCCEEDED.
+          items:
+            type: string
+            format: uri
+        failure:
+          type: string
+          description: >-
+            A description of the failure reason. Only present when the task
+            status is FAILED.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: >-
+            A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: >-
+            A machine-readable error code identifying the type of error.

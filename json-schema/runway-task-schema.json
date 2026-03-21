@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.dev.runwayml.com/schemas/runway/task.json",
+  "title": "Runway Generation Task",
+  "description": "Represents an asynchronous generation task in the Runway API. Tasks are created when submitting video, image, or audio generation requests and can be polled for status and output.",
+  "type": "object",
+  "required": ["id", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier for the generation task."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current processing status of the task.",
+      "enum": ["PENDING", "PROCESSING", "SUCCEEDED", "FAILED", "CANCELLED"]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the task was created."
+    },
+    "output": {
+      "type": "array",
+      "description": "One or more URLs linking to the generated output media. Only present when the task status is SUCCEEDED.",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "failure": {
+      "type": "string",
+      "description": "A description of the failure reason. Only present when the task status is FAILED."
+    }
+  },
+  "$defs": {
+    "ImageToVideoInput": {
+      "type": "object",
+      "description": "Input parameters for image-to-video generation tasks.",
+      "required": ["model", "promptImage"],
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "The model to use for generation.",
+          "enum": ["gen4", "gen4_turbo", "gen4.5", "gen4_aleph"]
+        },
+        "promptImage": {
+          "type": "string",
+          "description": "An HTTPS URL, runway:// URI, or data URI containing an encoded image to use as input."
+        },
+        "promptText": {
+          "type": "string",
+          "description": "A text description of up to 1000 characters describing what should appear in the output.",
+          "maxLength": 1000
+        },
+        "duration": {
+          "type": "integer",
+          "description": "The duration of the generated video in seconds.",
+          "enum": [5, 10]
+        },
+        "ratio": {
+          "type": "string",
+          "description": "The aspect ratio of the output video.",
+          "enum": ["1280:720", "1584:672", "1104:832", "720:1280", "832:1104", "960:960"]
+        }
+      }
+    },
+    "TextToVideoInput": {
+      "type": "object",
+      "description": "Input parameters for text-to-video generation tasks.",
+      "required": ["model", "promptText"],
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "The model to use for text-to-video generation.",
+          "enum": ["gen4.5", "veo3.1", "veo3.1_fast", "veo3"]
+        },
+        "promptText": {
+          "type": "string",
+          "description": "A text description of up to 1000 characters describing what should appear in the output.",
+          "maxLength": 1000
+        },
+        "duration": {
+          "type": "integer",
+          "description": "The duration of the generated video in seconds.",
+          "enum": [5, 10]
+        },
+        "ratio": {
+          "type": "string",
+          "description": "The aspect ratio of the output video.",
+          "enum": ["1280:720", "1584:672", "1104:832", "720:1280", "832:1104", "960:960"]
+        }
+      }
+    },
+    "TextToImageInput": {
+      "type": "object",
+      "description": "Input parameters for text-to-image generation tasks.",
+      "required": ["model", "promptText"],
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "The model to use for image generation.",
+          "enum": ["gen4_image"]
+        },
+        "promptText": {
+          "type": "string",
+          "description": "A text description of up to 1000 characters describing what should appear in the output.",
+          "maxLength": 1000
+        },
+        "ratio": {
+          "type": "string",
+          "description": "The aspect ratio of the output image.",
+          "enum": ["1280:720", "1584:672", "1104:832", "720:1280", "832:1104", "960:960"]
+        }
+      }
+    },
+    "VideoToVideoInput": {
+      "type": "object",
+      "description": "Input parameters for video-to-video generation tasks.",
+      "required": ["model", "promptVideo", "promptText"],
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "The model to use for video-to-video generation.",
+          "enum": ["gen4_aleph"]
+        },
+        "promptVideo": {
+          "type": "string",
+          "description": "An HTTPS URL or runway:// URI pointing to the input video."
+        },
+        "promptText": {
+          "type": "string",
+          "description": "A text description guiding the transformation of the input video.",
+          "maxLength": 1000
+        },
+        "ratio": {
+          "type": "string",
+          "description": "The aspect ratio of the output video.",
+          "enum": ["1280:720", "1584:672", "1104:832", "720:1280", "832:1104", "960:960"]
+        }
+      }
+    },
+    "CharacterPerformanceInput": {
+      "type": "object",
+      "description": "Input parameters for character performance (Act Two) generation tasks.",
+      "required": ["model", "character", "reference"],
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "The model to use. Must be act_two.",
+          "enum": ["act_two"]
+        },
+        "character": {
+          "$ref": "#/$defs/MediaReference",
+          "description": "The character to animate."
+        },
+        "reference": {
+          "$ref": "#/$defs/MediaReference",
+          "description": "The driving performance reference controlling the character's movements."
+        },
+        "ratio": {
+          "type": "string",
+          "description": "The aspect ratio of the output video.",
+          "enum": ["1280:720", "1584:672", "1104:832", "720:1280", "832:1104", "960:960"]
+        }
+      }
+    },
+    "MediaReference": {
+      "type": "object",
+      "description": "A reference to a media asset (image or video) used as input.",
+      "required": ["type", "uri"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The media type of the input.",
+          "enum": ["image", "video"]
+        },
+        "uri": {
+          "type": "string",
+          "description": "An HTTPS URL or runway:// URI pointing to the media asset."
+        }
+      }
+    },
+    "AspectRatio": {
+      "type": "string",
+      "description": "Supported aspect ratios for generated media. Includes landscape (1280:720, 1584:672, 1104:832), portrait (720:1280, 832:1104), and square (960:960) formats.",
+      "enum": ["1280:720", "1584:672", "1104:832", "720:1280", "832:1104", "960:960"]
+    }
+  }
+}

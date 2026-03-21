@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.dev.runwayml.com/schemas/runway/avatar.json",
+  "title": "Runway Avatar",
+  "description": "Represents an avatar persona in the Runway Characters system. Avatars are persistent conversational video agents with defined appearance, voice, and personality, created from a single reference image.",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier for the avatar."
+    },
+    "name": {
+      "type": "string",
+      "description": "A human-readable name for the avatar persona.",
+      "minLength": 1
+    },
+    "referenceImage": {
+      "type": "string",
+      "format": "uri",
+      "description": "The HTTPS URL of the reference image used for the avatar's appearance. Any visual style works, from photorealistic humans to animated mascots."
+    },
+    "personality": {
+      "type": "string",
+      "description": "Instructions defining the avatar's personality, behavior, and conversational style."
+    },
+    "voice": {
+      "$ref": "#/$defs/VoiceConfig",
+      "description": "Voice configuration for the avatar."
+    },
+    "openingMessage": {
+      "type": "string",
+      "description": "An optional opening message that the avatar speaks when a session starts."
+    },
+    "documentIds": {
+      "type": "array",
+      "description": "List of knowledge document IDs attached to the avatar, providing additional context during conversations.",
+      "maxItems": 50,
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the avatar was created."
+    }
+  },
+  "$defs": {
+    "VoiceConfig": {
+      "type": "object",
+      "description": "Configuration for the avatar's voice, specifying the voice provider and preset.",
+      "required": ["type", "presetId"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The voice provider type.",
+          "enum": ["runway-live-preset"]
+        },
+        "presetId": {
+          "type": "string",
+          "description": "The identifier of the voice preset to use for the avatar."
+        }
+      }
+    },
+    "RealtimeSession": {
+      "type": "object",
+      "description": "A live WebRTC session connecting a user to an avatar for real-time conversational interaction. Sessions have a maximum duration of 5 minutes.",
+      "required": ["id", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The unique identifier of the session."
+        },
+        "status": {
+          "type": "string",
+          "description": "The current status of the session.",
+          "enum": ["PENDING", "READY", "ACTIVE", "ENDED"]
+        },
+        "model": {
+          "type": "string",
+          "description": "The model type used for the session.",
+          "enum": ["gwm1_avatars"]
+        },
+        "serverUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The WebRTC server URL to connect to."
+        },
+        "token": {
+          "type": "string",
+          "description": "The one-time authentication token for the WebRTC connection."
+        },
+        "roomName": {
+          "type": "string",
+          "description": "The name of the WebRTC room to join."
+        },
+        "maxSessionDurationSeconds": {
+          "type": "integer",
+          "description": "Maximum session duration in seconds.",
+          "maximum": 300
+        }
+      }
+    },
+    "Document": {
+      "type": "object",
+      "description": "A domain-specific knowledge document that avatars can reference during conversations to provide accurate, contextual responses.",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The unique identifier of the document."
+        },
+        "name": {
+          "type": "string",
+          "description": "A human-readable name for the knowledge document."
+        },
+        "content": {
+          "type": "string",
+          "description": "The text content of the knowledge document. Each avatar supports up to 50,000 tokens of knowledge across all attached documents."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The ISO 8601 timestamp when the document was uploaded."
+        }
+      }
+    },
+    "PresetAvatar": {
+      "type": "string",
+      "description": "Available preset avatar identifiers for quick session creation without custom avatar setup.",
+      "enum": [
+        "game-character",
+        "music-superstar",
+        "game-character-man",
+        "cat-character",
+        "influencer",
+        "tennis-coach",
+        "human-resource",
+        "fashion-designer",
+        "cooking-teacher"
+      ]
+    }
+  }
+}

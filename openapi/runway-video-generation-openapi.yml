@@ -1,0 +1,896 @@
+openapi: 3.1.0
+info:
+  title: Runway Video Generation API
+  description: >-
+    The Runway Video Generation API allows developers to generate videos from
+    text prompts, images, or existing videos using Runway's Gen-4, Gen-4.5,
+    Gen-4 Turbo, Aleph, and Veo models. The API supports text-to-video,
+    image-to-video, video-to-video, character performance (Act Two), lip sync,
+    video upscale, frame interpolation, and sound effect generation workflows.
+    Tasks are processed asynchronously, with developers submitting generation
+    requests and polling for results using unique task identifiers.
+    Authentication is handled via Bearer token in the HTTP Authorization header.
+  version: '2024-11-06'
+  contact:
+    name: Runway Support
+    url: https://support.runwayml.com/
+  termsOfService: https://runwayml.com/terms-of-use
+externalDocs:
+  description: Runway API Documentation
+  url: https://docs.dev.runwayml.com/api/
+servers:
+  - url: https://api.dev.runwayml.com/v1
+    description: Production Server
+tags:
+  - name: Image to Video
+    description: >-
+      Generate videos from input images with optional text prompts using Gen-4,
+      Gen-4 Turbo, Gen-4.5, or Aleph models.
+  - name: Text to Video
+    description: >-
+      Generate videos from text prompts alone using Gen-4.5, Veo 3.1, or
+      Veo 3.1 Fast models.
+  - name: Video to Video
+    description: >-
+      Generate new videos from existing video inputs using the Gen-4 Aleph model.
+  - name: Character Performance
+    description: >-
+      Control a character's facial expressions and body movements using a
+      reference performance video with the Act Two model.
+  - name: Lip Sync
+    description: >-
+      Create generative videos where a selected face speaks lines from audio
+      clips or AI-generated voices, supporting 28+ languages.
+  - name: Video Upscale
+    description: >-
+      Upscale video resolution and quality.
+  - name: Frame Interpolation
+    description: >-
+      Interpolate between video frames to increase frame rate and smoothness.
+  - name: Sound Effects
+    description: >-
+      Generate sound effects for videos using AI.
+  - name: Tasks
+    description: >-
+      Retrieve status and output of asynchronous generation tasks, or cancel
+      pending tasks.
+  - name: Uploads
+    description: >-
+      Upload temporary media files that can be referenced in generation requests.
+security:
+  - bearerAuth: []
+paths:
+  /image_to_video:
+    post:
+      operationId: createImageToVideo
+      summary: Create image-to-video generation task
+      description: >-
+        Starts a new asynchronous task to generate a video from an input image.
+        Optionally accepts a text prompt to guide the generation. Supports Gen-4,
+        Gen-4 Turbo, Gen-4.5, and Aleph models. Returns a task ID that can be
+        polled for completion.
+      tags:
+        - Image to Video
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageToVideoRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /text_to_video:
+    post:
+      operationId: createTextToVideo
+      summary: Create text-to-video generation task
+      description: >-
+        Starts a new asynchronous task to generate a video from a text prompt
+        alone, without requiring an input image. Supported by Gen-4.5, Veo 3.1,
+        and Veo 3.1 Fast models. Returns a task ID that can be polled for
+        completion.
+      tags:
+        - Text to Video
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToVideoRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /video_to_video:
+    post:
+      operationId: createVideoToVideo
+      summary: Create video-to-video generation task
+      description: >-
+        Starts a new asynchronous task to generate a video from an existing video
+        input using the Gen-4 Aleph model. The input video serves as a reference
+        for the generation, with a text prompt guiding the transformation.
+        Returns a task ID that can be polled for completion.
+      tags:
+        - Video to Video
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoToVideoRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /character_performance:
+    post:
+      operationId: createCharacterPerformance
+      summary: Create character performance (Act Two) task
+      description: >-
+        Starts a new asynchronous task to control a character's facial
+        expressions and body movements using a reference performance video.
+        Uses the Act Two model to animate a character image or video based on
+        a driving reference. Returns a task ID that can be polled for completion.
+      tags:
+        - Character Performance
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CharacterPerformanceRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /lip_sync:
+    post:
+      operationId: createLipSync
+      summary: Create lip sync generation task
+      description: >-
+        Starts a new asynchronous task to create a generative video where a
+        selected face speaks lines from audio clips or AI-generated voices.
+        Supports 28+ languages using the eleven_multilingual_v2 model. Returns
+        a task ID that can be polled for completion.
+      tags:
+        - Lip Sync
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LipSyncRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /video_upscale:
+    post:
+      operationId: createVideoUpscale
+      summary: Create video upscale task
+      description: >-
+        Starts a new asynchronous task to upscale a video to higher resolution
+        and quality. Accepts a video asset and returns a task ID that can be
+        polled for completion.
+      tags:
+        - Video Upscale
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoUpscaleRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /frame_interpolation:
+    post:
+      operationId: createFrameInterpolation
+      summary: Create frame interpolation task
+      description: >-
+        Starts a new asynchronous task to interpolate between video frames,
+        increasing the frame rate and smoothness of the output video. Returns
+        a task ID that can be polled for completion.
+      tags:
+        - Frame Interpolation
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FrameInterpolationRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /sound_effect:
+    post:
+      operationId: createSoundEffect
+      summary: Create sound effect generation task
+      description: >-
+        Starts a new asynchronous task to generate sound effects for a video
+        using AI. Returns a task ID that can be polled for completion.
+      tags:
+        - Sound Effects
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SoundEffectRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /tasks/{id}:
+    get:
+      operationId: getTask
+      summary: Retrieve task status and output
+      description: >-
+        Retrieves the current status and output of an asynchronous generation
+        task by its unique identifier. Poll this endpoint until the task status
+        indicates completion (SUCCEEDED or FAILED). When a task succeeds, the
+        response includes output URLs linking to the generated media.
+      tags:
+        - Tasks
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: Task status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteTask
+      summary: Cancel or delete a task
+      description: >-
+        Cancels a pending task or deletes a completed task by its unique
+        identifier. This operation cannot be undone.
+      tags:
+        - Tasks
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '204':
+          description: Task deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /uploads:
+    post:
+      operationId: createUpload
+      summary: Upload a temporary media file
+      description: >-
+        Uploads a temporary media file that can be referenced in subsequent API
+        generation requests using a runway:// URI. The response includes an
+        upload URL and form fields to complete the multipart upload. Once the
+        upload completes, the runway:// URI is ready to use in generation
+        requests.
+      tags:
+        - Uploads
+      parameters:
+        - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadRequest'
+      responses:
+        '200':
+          description: Upload initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+        '400':
+          description: Bad request - invalid filename or unsupported media type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        API key passed via the HTTP Authorization header using the Bearer scheme.
+        Obtain your API key from the Runway Developer Portal at
+        https://dev.runwayml.com/.
+  parameters:
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: >-
+        API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+          - '2024-11-06'
+    TaskId:
+      name: id
+      in: path
+      required: true
+      description: >-
+        The unique identifier of the task, returned when the task was created.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    ImageToVideoRequest:
+      type: object
+      required:
+        - model
+        - promptImage
+      properties:
+        model:
+          type: string
+          description: >-
+            The model to use for generation. Supported values include gen4,
+            gen4_turbo, gen4.5, and gen4_aleph.
+          enum:
+            - gen4
+            - gen4_turbo
+            - gen4.5
+            - gen4_aleph
+        promptImage:
+          type: string
+          description: >-
+            An HTTPS URL, runway:// URI, or data URI containing an encoded image
+            to use as the input for video generation.
+        promptText:
+          type: string
+          description: >-
+            A text description of up to 1000 characters that describes in detail
+            what should appear in the generated output video.
+          maxLength: 1000
+        duration:
+          type: integer
+          description: >-
+            The duration of the generated video in seconds. Common values are 5
+            and 10.
+          enum:
+            - 5
+            - 10
+        ratio:
+          type: string
+          description: >-
+            The aspect ratio of the output video. Supported landscape ratios
+            include 1280:720, 1584:672, 1104:832. Portrait ratios include
+            720:1280, 832:1104. Square ratio is 960:960.
+          enum:
+            - '1280:720'
+            - '1584:672'
+            - '1104:832'
+            - '720:1280'
+            - '832:1104'
+            - '960:960'
+    TextToVideoRequest:
+      type: object
+      required:
+        - model
+        - promptText
+      properties:
+        model:
+          type: string
+          description: >-
+            The model to use for text-to-video generation. Gen-4.5 supports
+            text-only generation by omitting the promptImage parameter. Veo
+            models also support text-to-video.
+          enum:
+            - gen4.5
+            - veo3.1
+            - veo3.1_fast
+            - veo3
+        promptText:
+          type: string
+          description: >-
+            A text description of up to 1000 characters that describes in detail
+            what should appear in the generated output video.
+          maxLength: 1000
+        duration:
+          type: integer
+          description: >-
+            The duration of the generated video in seconds.
+          enum:
+            - 5
+            - 10
+        ratio:
+          type: string
+          description: >-
+            The aspect ratio of the output video.
+          enum:
+            - '1280:720'
+            - '1584:672'
+            - '1104:832'
+            - '720:1280'
+            - '832:1104'
+            - '960:960'
+    VideoToVideoRequest:
+      type: object
+      required:
+        - model
+        - promptVideo
+        - promptText
+      properties:
+        model:
+          type: string
+          description: >-
+            The model to use for video-to-video generation. Currently supports
+            the Gen-4 Aleph model.
+          enum:
+            - gen4_aleph
+        promptVideo:
+          type: string
+          description: >-
+            An HTTPS URL or runway:// URI pointing to the input video to
+            transform.
+        promptText:
+          type: string
+          description: >-
+            A text description of up to 1000 characters guiding the
+            transformation of the input video.
+          maxLength: 1000
+        ratio:
+          type: string
+          description: >-
+            The aspect ratio of the output video.
+          enum:
+            - '1280:720'
+            - '1584:672'
+            - '1104:832'
+            - '720:1280'
+            - '832:1104'
+            - '960:960'
+    CharacterPerformanceRequest:
+      type: object
+      required:
+        - model
+        - character
+        - reference
+      properties:
+        model:
+          type: string
+          description: >-
+            The model to use for character performance. Must be set to act_two.
+          enum:
+            - act_two
+        character:
+          type: object
+          description: >-
+            The character to animate. Accepts either an image or video with a
+            URI.
+          required:
+            - type
+            - uri
+          properties:
+            type:
+              type: string
+              description: >-
+                The media type of the character input.
+              enum:
+                - image
+                - video
+            uri:
+              type: string
+              description: >-
+                An HTTPS URL or runway:// URI pointing to the character media.
+        reference:
+          type: object
+          description: >-
+            The driving performance reference. Accepts either an image or video
+            with a URI that controls the character's movements.
+          required:
+            - type
+            - uri
+          properties:
+            type:
+              type: string
+              description: >-
+                The media type of the reference input.
+              enum:
+                - image
+                - video
+            uri:
+              type: string
+              description: >-
+                An HTTPS URL or runway:// URI pointing to the reference media.
+        ratio:
+          type: string
+          description: >-
+            The aspect ratio of the output video.
+          enum:
+            - '1280:720'
+            - '1584:672'
+            - '1104:832'
+            - '720:1280'
+            - '832:1104'
+            - '960:960'
+    LipSyncRequest:
+      type: object
+      required:
+        - model
+        - input
+        - audio
+      properties:
+        model:
+          type: string
+          description: >-
+            The model to use for lip sync generation.
+          enum:
+            - gen4
+            - gen4_turbo
+        input:
+          type: string
+          description: >-
+            An HTTPS URL or runway:// URI pointing to the input image or video
+            containing the face to animate.
+        audio:
+          type: string
+          description: >-
+            An HTTPS URL or runway:// URI pointing to the audio file to sync
+            with the face. Supports 28+ languages via eleven_multilingual_v2.
+    VideoUpscaleRequest:
+      type: object
+      required:
+        - model
+        - videoUri
+      properties:
+        model:
+          type: string
+          description: >-
+            The model to use for video upscaling.
+          enum:
+            - upscale_v1
+        videoUri:
+          type: string
+          description: >-
+            An HTTPS URL or runway:// URI pointing to the video to upscale.
+    FrameInterpolationRequest:
+      type: object
+      required:
+        - model
+        - videoUri
+      properties:
+        model:
+          type: string
+          description: >-
+            The model to use for frame interpolation.
+          enum:
+            - frame_interpolation_v1
+        videoUri:
+          type: string
+          description: >-
+            An HTTPS URL or runway:// URI pointing to the video for frame
+            interpolation.
+    SoundEffectRequest:
+      type: object
+      required:
+        - model
+        - promptText
+      properties:
+        model:
+          type: string
+          description: >-
+            The model to use for sound effect generation.
+          enum:
+            - sound_effect_v1
+        promptText:
+          type: string
+          description: >-
+            A text description of the desired sound effect.
+          maxLength: 1000
+        videoUri:
+          type: string
+          description: >-
+            An optional HTTPS URL or runway:// URI pointing to a video to
+            generate sound effects for.
+        duration:
+          type: integer
+          description: >-
+            The duration of the generated sound effect in seconds.
+    TaskCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: >-
+            The unique identifier for the created task. Use this ID to poll
+            the task status endpoint.
+    TaskResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: >-
+            The unique identifier of the task.
+        status:
+          type: string
+          description: >-
+            The current status of the task.
+          enum:
+            - PENDING
+            - PROCESSING
+            - SUCCEEDED
+            - FAILED
+            - CANCELLED
+        createdAt:
+          type: string
+          format: date-time
+          description: >-
+            The timestamp when the task was created.
+        output:
+          type: array
+          description: >-
+            One or more URLs linking to the generated output media. Only present
+            when the task status is SUCCEEDED.
+          items:
+            type: string
+            format: uri
+        failure:
+          type: string
+          description: >-
+            A description of the failure reason. Only present when the task
+            status is FAILED.
+    UploadRequest:
+      type: object
+      required:
+        - filename
+      properties:
+        filename:
+          type: string
+          description: >-
+            The filename of the file to upload. Must have a valid file extension
+            corresponding to a supported media type (image, video, or audio).
+    UploadResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The identifier for the uploaded file, usable as a runway:// URI in
+            generation requests.
+        uploadUrl:
+          type: string
+          format: uri
+          description: >-
+            The presigned URL to upload the file to via a multipart POST request.
+        fields:
+          type: object
+          description: >-
+            A dictionary of form fields to include in the multipart POST request
+            when uploading to the uploadUrl.
+          additionalProperties:
+            type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: >-
+            A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: >-
+            A machine-readable error code identifying the type of error.

@@ -1,0 +1,126 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "runway": "https://api.dev.runwayml.com/vocab/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "GenerationTask": {
+      "@id": "runway:GenerationTask",
+      "@context": {
+        "id": "schema:identifier",
+        "status": "runway:taskStatus",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "output": {
+          "@id": "schema:url",
+          "@type": "@id",
+          "@container": "@set"
+        },
+        "failure": "runway:failureReason",
+        "model": "runway:model",
+        "promptText": "runway:promptText",
+        "promptImage": {
+          "@id": "runway:promptImage",
+          "@type": "@id"
+        },
+        "promptVideo": {
+          "@id": "runway:promptVideo",
+          "@type": "@id"
+        },
+        "duration": "schema:duration",
+        "ratio": "runway:aspectRatio"
+      }
+    },
+
+    "Avatar": {
+      "@id": "runway:Avatar",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "referenceImage": {
+          "@id": "schema:image",
+          "@type": "@id"
+        },
+        "personality": "runway:personality",
+        "voice": "runway:voiceConfig",
+        "openingMessage": "runway:openingMessage",
+        "documentIds": {
+          "@id": "runway:knowledgeDocuments",
+          "@container": "@set"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "RealtimeSession": {
+      "@id": "runway:RealtimeSession",
+      "@context": {
+        "id": "schema:identifier",
+        "status": "runway:sessionStatus",
+        "serverUrl": {
+          "@id": "runway:serverUrl",
+          "@type": "@id"
+        },
+        "token": "runway:sessionToken",
+        "roomName": "runway:roomName",
+        "maxSessionDurationSeconds": "runway:maxSessionDuration",
+        "model": "runway:model"
+      }
+    },
+
+    "Document": {
+      "@id": "runway:Document",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "content": "schema:text",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Upload": {
+      "@id": "runway:Upload",
+      "@context": {
+        "id": "schema:identifier",
+        "uploadUrl": {
+          "@id": "runway:uploadUrl",
+          "@type": "@id"
+        },
+        "filename": "schema:name"
+      }
+    },
+
+    "VideoGeneration": {
+      "@id": "runway:VideoGeneration",
+      "@context": {
+        "model": "runway:model",
+        "promptText": "runway:promptText",
+        "promptImage": {
+          "@id": "runway:promptImage",
+          "@type": "@id"
+        },
+        "duration": "schema:duration",
+        "ratio": "runway:aspectRatio"
+      }
+    },
+
+    "ImageGeneration": {
+      "@id": "runway:ImageGeneration",
+      "@context": {
+        "model": "runway:model",
+        "promptText": "runway:promptText",
+        "ratio": "runway:aspectRatio"
+      }
+    }
+  }
+}
