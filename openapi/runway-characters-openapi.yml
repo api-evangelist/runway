@@ -27,16 +27,16 @@ tags:
       Create and manage persistent avatar personas with defined appearance,
       voice, and personality. Avatars can be created from a single reference
       image in any visual style.
-  - name: Realtime Sessions
-    description: >-
-      Create live WebRTC sessions connecting users to avatars for real-time
-      conversational interactions. Each session has a maximum duration of 5
-      minutes.
   - name: Documents
     description: >-
       Upload and manage domain-specific knowledge documents that avatars can
       reference during conversations to provide accurate, contextual responses.
       Each avatar supports up to 50,000 tokens of knowledge.
+  - name: Realtime Sessions
+    description: >-
+      Create live WebRTC sessions connecting users to avatars for real-time
+      conversational interactions. Each session has a maximum duration of 5
+      minutes.
 security:
   - bearerAuth: []
 paths:

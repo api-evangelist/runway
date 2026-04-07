@@ -22,31 +22,21 @@ servers:
   - url: https://api.dev.runwayml.com/v1
     description: Production Server
 tags:
-  - name: Image to Video
-    description: >-
-      Generate videos from input images with optional text prompts using Gen-4,
-      Gen-4 Turbo, Gen-4.5, or Aleph models.
-  - name: Text to Video
-    description: >-
-      Generate videos from text prompts alone using Gen-4.5, Veo 3.1, or
-      Veo 3.1 Fast models.
-  - name: Video to Video
-    description: >-
-      Generate new videos from existing video inputs using the Gen-4 Aleph model.
   - name: Character Performance
     description: >-
       Control a character's facial expressions and body movements using a
       reference performance video with the Act Two model.
+  - name: Frame Interpolation
+    description: >-
+      Interpolate between video frames to increase frame rate and smoothness.
+  - name: Image to Video
+    description: >-
+      Generate videos from input images with optional text prompts using Gen-4,
+      Gen-4 Turbo, Gen-4.5, or Aleph models.
   - name: Lip Sync
     description: >-
       Create generative videos where a selected face speaks lines from audio
       clips or AI-generated voices, supporting 28+ languages.
-  - name: Video Upscale
-    description: >-
-      Upscale video resolution and quality.
-  - name: Frame Interpolation
-    description: >-
-      Interpolate between video frames to increase frame rate and smoothness.
   - name: Sound Effects
     description: >-
       Generate sound effects for videos using AI.
@@ -54,9 +44,19 @@ tags:
     description: >-
       Retrieve status and output of asynchronous generation tasks, or cancel
       pending tasks.
+  - name: Text to Video
+    description: >-
+      Generate videos from text prompts alone using Gen-4.5, Veo 3.1, or
+      Veo 3.1 Fast models.
   - name: Uploads
     description: >-
       Upload temporary media files that can be referenced in generation requests.
+  - name: Video to Video
+    description: >-
+      Generate new videos from existing video inputs using the Gen-4 Aleph model.
+  - name: Video Upscale
+    description: >-
+      Upscale video resolution and quality.
 security:
   - bearerAuth: []
 paths:

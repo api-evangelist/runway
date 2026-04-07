@@ -20,12 +20,12 @@ servers:
   - url: https://api.dev.runwayml.com/v1
     description: Production Server
 tags:
-  - name: Text to Image
-    description: >-
-      Generate high-quality images from text prompts using the Gen-4 Image model.
   - name: Tasks
     description: >-
       Retrieve status and output of asynchronous generation tasks.
+  - name: Text to Image
+    description: >-
+      Generate high-quality images from text prompts using the Gen-4 Image model.
 security:
   - bearerAuth: []
 paths:
