@@ -33,6 +33,8 @@ The Runway Video Generation API allows developers to generate videos from text p
 
 - [Documentation](https://docs.dev.runwayml.com/api/)
 - [OpenAPI](openapi/runway-video-generation-openapi.yml)
+- [Spectral Rules](rules/runway-rules.yml)
+- [Naftiko Capability](capabilities/generative-media-production.yaml)
 
 ### Runway Image Generation API
 The Runway Image Generation API provides text-to-image generation using the Gen-4 Image and Gemini 3 Pro Image models. Accepts text prompts up to 1000 characters and supports multiple aspect ratios. Uses the same asynchronous task pattern and Bearer token authentication as the video API. As of April 2026, Gemini 3 Pro Image supports up to 5,500-character prompts and 14 reference images.
@@ -47,6 +49,8 @@ The Runway Image Generation API provides text-to-image generation using the Gen-
 
 - [Documentation](https://docs.dev.runwayml.com/api/)
 - [OpenAPI](openapi/runway-image-generation-openapi.yml)
+- [Spectral Rules](rules/runway-rules.yml)
+- [Naftiko Capability](capabilities/generative-media-production.yaml)
 
 ### Runway Characters API
 The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1 (Runway's General World Model). Avatars are fully custom conversational video agents created from a single reference image with no fine-tuning. Supports photorealistic or animated styles, human or non-human appearances. Manages avatars, real-time WebRTC sessions (max 5 minutes), and knowledge documents (up to 50,000 tokens per avatar).
@@ -62,6 +66,8 @@ The Runway Characters API enables developers to build real-time conversational a
 - [Documentation](https://docs.dev.runwayml.com/characters/)
 - [OpenAPI](openapi/runway-characters-openapi.yml)
 - [AsyncAPI](asyncapi/runway-characters-asyncapi.yml)
+- [Naftiko Capability](capabilities/generative-media-production.yaml)
+- [Spectral Rules](rules/runway-rules.yml)
 
 ### Runway Python SDK
 The Runway Python SDK provides a convenient Python library for interacting with the Runway API. Supports Python 3.8+ with type annotations compatible with MyPy. Includes automatic retries, best-practice error handling, and type safety.

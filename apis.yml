@@ -51,6 +51,10 @@ apis:
         url: https://docs.dev.runwayml.com/api/
       - type: OpenAPI
         url: openapi/runway-video-generation-openapi.yml
+      - type: Spectral Rules
+        url: rules/runway-rules.yml
+      - type: NaftikoCapability
+        url: capabilities/generative-media-production.yaml
 
   - aid: runway:image-generation
     name: Runway Image Generation API
@@ -75,6 +79,10 @@ apis:
         url: https://docs.dev.runwayml.com/api/
       - type: OpenAPI
         url: openapi/runway-image-generation-openapi.yml
+      - type: Spectral Rules
+        url: rules/runway-rules.yml
+      - type: NaftikoCapability
+        url: capabilities/generative-media-production.yaml
 
   - aid: runway:characters
     name: Runway Characters API
