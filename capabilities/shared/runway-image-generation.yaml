@@ -1,0 +1,124 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Runway Image Generation API"
+  description: "Runway text-to-image generation API using Gen-4 Image and Gemini 3 Pro Image models."
+  tags:
+    - Runway
+    - Image Generation
+    - Artificial Intelligence
+    - Text To Image
+    - Generative AI
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RUNWAY_API_KEY: RUNWAY_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: runway-image
+      baseUri: "https://api.dev.runwayml.com/v1"
+      description: "Runway image generation API"
+      authentication:
+        type: bearer
+        token: "{{env.RUNWAY_API_KEY}}"
+      resources:
+        - name: text-to-image
+          path: /text_to_image
+          description: "Generate images from text prompts"
+          operations:
+            - name: create-text-to-image
+              method: POST
+              description: "Create text-to-image generation task"
+              inputParameters:
+                - name: X-Runway-Version
+                  in: header
+                  type: string
+                  required: true
+                  description: "API version header (2024-11-06)"
+              body:
+                type: json
+                data:
+                  model: "{{tools.model}}"
+                  promptText: "{{tools.promptText}}"
+                  ratio: "{{tools.ratio}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: tasks
+          path: /tasks/{id}
+          description: "Poll image generation task status"
+          operations:
+            - name: get-task
+              method: GET
+              description: "Get task status and output URLs"
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Task UUID"
+                - name: X-Runway-Version
+                  in: header
+                  type: string
+                  required: true
+                  description: "API version header"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8103
+      namespace: runway-image-rest
+      resources:
+        - path: /v1/images
+          name: images
+          description: "Image generation"
+          operations:
+            - method: POST
+              name: create-text-to-image
+              description: "Generate image from text"
+              call: "runway-image.create-text-to-image"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9103
+      namespace: runway-image-mcp
+      transport: http
+      tools:
+        - name: create-text-to-image
+          description: "Generate a high-quality image from a text prompt using Runway Gen-4 Image model"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "runway-image.create-text-to-image"
+          with:
+            model: "tools.model"
+            promptText: "tools.promptText"
+            ratio: "tools.ratio"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-image-task-status
+          description: "Poll image generation task status"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "runway-image.get-task"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."

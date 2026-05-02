@@ -1,0 +1,172 @@
+extends: spectral:oas
+rules:
+
+  runway-operation-id-required:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  runway-operation-id-camel-case:
+    description: >-
+      Runway operationIds use camelCase convention (e.g., createTextToVideo,
+      getTask, createAvatar). This ensures consistent client SDK method naming
+      across Python and Node.js SDKs.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  runway-tags-required:
+    description: All operations must have at least one tag
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  runway-tags-title-case:
+    description: >-
+      Tags must use Title Case (e.g., "Tasks", "Text to Video", "Image to Video",
+      "Avatars", "Documents", "Realtime Sessions").
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].tags[*]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]+$"
+
+  runway-summary-required:
+    description: All operations must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  runway-summary-title-case:
+    description: >-
+      Operation summaries must use Title Case to match Runway's documentation
+      (e.g., "Create Text-to-Video Generation Task", "Retrieve Task Status and Output").
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 \\-]+$"
+
+  runway-description-required:
+    description: All operations must have a description
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+
+  runway-version-header-required:
+    description: >-
+      All Runway API operations require the X-Runway-Version header set to "2024-11-06".
+      This should be documented as a required parameter in every operation.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].parameters[?(@.name == 'X-Runway-Version')]"
+    then:
+      field: required
+      function: truthy
+
+  runway-bearer-auth-required:
+    description: >-
+      Runway API uses Bearer token authentication. All operations must be secured
+      by the bearerAuth security scheme.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          oneOf:
+            - required: ["security"]
+            - description: Security inherited from global level
+
+  runway-post-creates-task-pattern:
+    description: >-
+      Runway generation endpoints follow an async task pattern: POST creates a task
+      and returns a TaskCreatedResponse with an id field. GET /tasks/{id} polls for
+      completion. All generation POST endpoints should return a task creation response.
+    severity: info
+    given: "$.paths[/image_to_video,/text_to_video,/video_to_video,/character_performance,/lip_sync,/video_upscale,/frame_interpolation,/sound_effect,/text_to_image].post.responses.200.content.application/json.schema"
+    then:
+      field: "$ref"
+      function: truthy
+
+  runway-task-id-uuid-format:
+    description: >-
+      Task IDs in Runway API are UUIDs. Path parameters named "id" for task operations
+      should specify format: uuid.
+    severity: warn
+    given: "$.paths[~/tasks/~][*].parameters[?(@.name == 'id')].schema"
+    then:
+      field: format
+      function: enumeration
+      functionOptions:
+        values:
+          - uuid
+
+  runway-429-rate-limit-documented:
+    description: >-
+      Runway API enforces rate limits. Generation POST endpoints should document
+      the 429 Too Many Requests response.
+    severity: warn
+    given: "$.paths[/image_to_video,/text_to_video,/video_to_video,/text_to_image,/character_performance,/lip_sync,/video_upscale,/frame_interpolation,/sound_effect].post.responses"
+    then:
+      field: "429"
+      function: truthy
+
+  runway-delete-returns-204:
+    description: DELETE operations should return 204 No Content
+    severity: warn
+    given: "$.paths[*].delete.responses"
+    then:
+      field: "204"
+      function: truthy
+
+  runway-response-must-have-401:
+    description: All operations must document the 401 Unauthorized response
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: "401"
+      function: truthy
+
+  runway-schema-properties-typed:
+    description: All schema properties should have a type defined
+    severity: warn
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: type
+      function: truthy
+
+  runway-servers-use-production-url:
+    description: >-
+      Runway API production server URL is https://api.dev.runwayml.com/v1.
+      The server must be documented correctly.
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "api\\.dev\\.runwayml\\.com"
+
+  runway-info-version-format:
+    description: >-
+      Runway API uses date-based versioning in YYYY-MM-DD format (e.g., "2024-11-06").
+      The info.version field should reflect the API date version.
+    severity: warn
+    given: "$.info.version"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^20[0-9]{2}-[0-1][0-9]-[0-3][0-9]$"

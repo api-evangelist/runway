@@ -1,0 +1,138 @@
+{
+  "name": "Runway Generation Task",
+  "description": "Structure of an asynchronous generation task in the Runway API. All generation operations (video, image, character performance, lip sync, etc.) return a task that is polled for completion.",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string (UUID)",
+      "required": true,
+      "description": "Unique task identifier used for polling status"
+    },
+    {
+      "name": "status",
+      "type": "string enum",
+      "required": true,
+      "description": "Current task status",
+      "enum": ["PENDING", "PROCESSING", "SUCCEEDED", "FAILED", "CANCELLED"]
+    },
+    {
+      "name": "createdAt",
+      "type": "string (ISO 8601 datetime)",
+      "required": false,
+      "description": "Timestamp when the task was created"
+    },
+    {
+      "name": "output",
+      "type": "array of string (URI)",
+      "required": false,
+      "description": "Output media URLs. Only present when status is SUCCEEDED."
+    },
+    {
+      "name": "failure",
+      "type": "string",
+      "required": false,
+      "description": "Failure reason description. Only present when status is FAILED."
+    },
+    {
+      "name": "model",
+      "type": "string",
+      "required": false,
+      "description": "The generative model used for this task"
+    }
+  ],
+  "task_types": [
+    {
+      "name": "Text to Video",
+      "endpoint": "POST /text_to_video",
+      "models": ["gen4.5", "veo3.1", "veo3.1_fast"],
+      "input_fields": ["model", "promptText", "duration", "ratio"]
+    },
+    {
+      "name": "Image to Video",
+      "endpoint": "POST /image_to_video",
+      "models": ["gen4", "gen4_turbo", "gen4.5", "gen4_aleph"],
+      "input_fields": ["model", "promptImage", "promptText", "duration", "ratio"]
+    },
+    {
+      "name": "Video to Video",
+      "endpoint": "POST /video_to_video",
+      "models": ["gen4_aleph"],
+      "input_fields": ["model", "promptVideo", "promptText", "ratio"]
+    },
+    {
+      "name": "Text to Image",
+      "endpoint": "POST /text_to_image",
+      "models": ["gen4_image"],
+      "input_fields": ["model", "promptText", "ratio"]
+    },
+    {
+      "name": "Character Performance",
+      "endpoint": "POST /character_performance",
+      "models": ["act_two"],
+      "input_fields": ["model", "character", "reference", "ratio"]
+    },
+    {
+      "name": "Lip Sync",
+      "endpoint": "POST /lip_sync",
+      "models": ["gen4", "gen4_turbo"],
+      "input_fields": ["model", "input", "audio"]
+    },
+    {
+      "name": "Video Upscale",
+      "endpoint": "POST /video_upscale",
+      "models": ["upscale_v1"],
+      "input_fields": ["model", "videoUri"]
+    },
+    {
+      "name": "Frame Interpolation",
+      "endpoint": "POST /frame_interpolation",
+      "models": ["frame_interpolation_v1"],
+      "input_fields": ["model", "videoUri"]
+    },
+    {
+      "name": "Sound Effect",
+      "endpoint": "POST /sound_effect",
+      "models": ["sound_effect_v1"],
+      "input_fields": ["model", "promptText", "videoUri", "duration"]
+    }
+  ],
+  "lifecycle": {
+    "description": "All Runway tasks follow this async lifecycle",
+    "states": [
+      {
+        "state": "PENDING",
+        "description": "Task queued but not yet processing"
+      },
+      {
+        "state": "PROCESSING",
+        "description": "Task actively generating output"
+      },
+      {
+        "state": "SUCCEEDED",
+        "description": "Task completed. Output URLs available in output field."
+      },
+      {
+        "state": "FAILED",
+        "description": "Task failed. Reason in failure field."
+      },
+      {
+        "state": "CANCELLED",
+        "description": "Task was cancelled via DELETE /tasks/{id}"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "created_by",
+      "target": "Generation Request",
+      "cardinality": "one-to-one",
+      "description": "Each task is created by one generation request"
+    },
+    {
+      "name": "produces",
+      "target": "Media Output (URL)",
+      "cardinality": "one-to-many",
+      "description": "A succeeded task produces one or more media output URLs"
+    }
+  ]
+}

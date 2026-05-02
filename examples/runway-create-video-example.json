@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.dev.runwayml.com/v1/text_to_video",
+    "headers": {
+      "Authorization": "Bearer YOUR_RUNWAY_API_KEY",
+      "X-Runway-Version": "2024-11-06",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "model": "gen4.5",
+      "promptText": "A serene mountain lake at sunset, golden light reflecting on still water, pine trees silhouetted against an orange sky, photorealistic, cinematic quality",
+      "duration": 10,
+      "ratio": "1280:720"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    }
+  },
+  "poll_example": {
+    "request": {
+      "method": "GET",
+      "url": "https://api.dev.runwayml.com/v1/tasks/3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "headers": {
+        "Authorization": "Bearer YOUR_RUNWAY_API_KEY",
+        "X-Runway-Version": "2024-11-06"
+      }
+    },
+    "response_succeeded": {
+      "status": 200,
+      "body": {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "status": "SUCCEEDED",
+        "createdAt": "2026-05-02T12:00:00Z",
+        "output": [
+          "https://runway-generated.s3.amazonaws.com/output/3fa85f64-5717-4562-b3fc-2c963f66afa6.mp4"
+        ]
+      }
+    }
+  }
+}

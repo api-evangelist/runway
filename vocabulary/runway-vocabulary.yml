@@ -1,0 +1,197 @@
+name: Runway Generative AI Platform Vocabulary
+description: >-
+  Core vocabulary, terminology, and domain concepts used in the Runway AI
+  developer platform. Covers generative video, image, avatar, and audio APIs
+  powered by Runway's advanced foundation models.
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+
+  - term: Generative Task
+    definition: >-
+      An asynchronous job submitted to the Runway API that produces generated media.
+      All Runway generation endpoints return a task ID that is polled until status
+      is SUCCEEDED, FAILED, or CANCELLED.
+    tags:
+      - API
+      - Async
+
+  - term: Gen-4
+    definition: >-
+      Runway's fourth-generation video generation model. Supports image-to-video
+      generation with high visual quality and controllability. Foundation for
+      Gen-4 Turbo and Gen-4.5 variants.
+    tags:
+      - Model
+      - Video Generation
+
+  - term: Gen-4.5
+    definition: >-
+      An enhanced version of Gen-4 supporting both text-to-video and image-to-video
+      generation with improved quality and control. Released February 2026 via API.
+      Supports durations from 2-10 seconds.
+    tags:
+      - Model
+      - Video Generation
+
+  - term: Gen-4 Turbo
+    definition: >-
+      A faster, more cost-efficient variant of Gen-4 with flexible generation
+      length from 2-10 seconds. Optimized for production use cases requiring
+      rapid generation.
+    tags:
+      - Model
+      - Video Generation
+
+  - term: Gen-4 Aleph
+    definition: >-
+      A Gen-4 variant supporting video-to-video transformation using an existing
+      video as input. Used for video editing and style transfer workflows.
+    tags:
+      - Model
+      - Video Generation
+
+  - term: Veo 3.1
+    definition: >-
+      Google's video generation model available via the Runway API. Supports
+      image-to-video and text-to-video with full 1080p output and first/last
+      keyframe support.
+    tags:
+      - Model
+      - Video Generation
+      - Google
+
+  - term: Act Two
+    definition: >-
+      Runway's character performance model that animates characters using reference
+      performance video to control facial expressions and body movements. Enables
+      motion capture-style animation from video input.
+    tags:
+      - Model
+      - Character Animation
+
+  - term: GWM-1
+    definition: >-
+      Runway's General World Model, the foundation powering the Characters API.
+      Enables real-time conversational avatars with photorealistic or animated
+      appearance created from a single reference image.
+    tags:
+      - Model
+      - Characters
+      - Avatar
+
+  - term: Avatar
+    definition: >-
+      A persistent conversational video agent in the Runway Characters API.
+      Created from a single reference image with defined appearance, voice, and
+      personality. Can reference knowledge documents during conversations.
+    tags:
+      - Characters
+      - Avatar
+      - Conversational AI
+
+  - term: Realtime Session
+    definition: >-
+      A live WebRTC connection between a user and a Runway avatar for real-time
+      conversational interaction. Sessions have a maximum duration of 5 minutes.
+      WebRTC credentials are single-use.
+    tags:
+      - Characters
+      - WebRTC
+      - Real Time
+
+  - term: Text-to-Video
+    definition: >-
+      A generation workflow that creates a video purely from a text prompt,
+      without requiring an input image. Supported by Gen-4.5, Veo 3.1, and
+      Veo 3.1 Fast models.
+    tags:
+      - Video Generation
+      - Text to Video
+
+  - term: Image-to-Video
+    definition: >-
+      A generation workflow that creates a video from an input image, optionally
+      guided by a text prompt. The most common Runway generation pattern.
+    tags:
+      - Video Generation
+      - Image to Video
+
+  - term: Video-to-Video
+    definition: >-
+      A generation workflow that transforms an existing video using a text prompt
+      as a transformation guide. Uses the Gen-4 Aleph model.
+    tags:
+      - Video Generation
+      - Video to Video
+
+  - term: Lip Sync
+    definition: >-
+      A generation workflow that animates a face in an image or video to match
+      provided audio. Supports 28+ languages via the ElevenLabs eleven_multilingual_v2
+      model integration.
+    tags:
+      - Video Generation
+      - Lip Sync
+      - Audio
+
+  - term: Frame Interpolation
+    definition: >-
+      A video enhancement workflow that increases the frame rate of a video by
+      generating intermediate frames, resulting in smoother motion.
+    tags:
+      - Video Enhancement
+      - Frame Interpolation
+
+  - term: Video Upscale
+    definition: >-
+      A video enhancement workflow that increases the resolution and quality
+      of a lower-resolution input video.
+    tags:
+      - Video Enhancement
+      - Upscaling
+
+  - term: Sound Effect Generation
+    definition: >-
+      A workflow that generates AI-created sound effects for a video or from
+      a text description. Optionally synchronized to a provided video.
+    tags:
+      - Audio
+      - Sound Effects
+
+  - term: Bearer Token
+    definition: >-
+      The authentication method used by all Runway API endpoints. An API key
+      is passed in the HTTP Authorization header as "Bearer <api-key>". Obtain
+      API keys from the Runway Developer Portal at dev.runwayml.com.
+    tags:
+      - Authentication
+      - Security
+
+  - term: X-Runway-Version
+    definition: >-
+      A required HTTP header in all Runway API requests specifying the API version.
+      Must be set to exactly "2024-11-06". This header enables backward-compatible
+      API evolution.
+    tags:
+      - API
+      - Versioning
+
+  - term: Runway Upload
+    definition: >-
+      A temporary media file uploaded to Runway's storage via a presigned S3 URL.
+      Once uploaded, the file is accessible via a runway:// URI that can be used
+      as input in generation requests.
+    tags:
+      - Uploads
+      - Media
+      - Storage
+
+  - term: Aspect Ratio
+    definition: >-
+      The proportional relationship between the width and height of generated media.
+      Runway supports landscape (1280:720, 1584:672, 1104:832), portrait (720:1280,
+      832:1104), and square (960:960) ratios.
+    tags:
+      - Video Generation
+      - Image Generation
