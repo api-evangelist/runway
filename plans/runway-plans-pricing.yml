@@ -1,0 +1,147 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Runway
+providerId: runway
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - AI
+  - Video Generation
+  - Image Generation
+description: Runway credit-based pricing for video/image generation.
+sources:
+  - https://runwayml.com/pricing
+plans:
+  - id: runway-free
+    name: Free
+    type: freemium
+    description: $0; 125 one-time credits.
+    entries:
+      - label: Credits
+        name: credits
+        type: quota
+        metric: credit
+        limit: 125
+        timeFrame: one-time
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Gen-4 Turbo, Gen-4 image
+      - name: Gemini 3 Pro, 2.5
+      - name: TTS / Audio Apps
+      - name: 3 video editor projects
+      - name: 5 GB asset storage
+      - name: No Gen-4 Video
+  - id: runway-standard
+    name: Standard
+    type: paid
+    description: $12/month annual ($144/yr); 625 monthly credits.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '12.00'
+        userMultiplied: false
+      - label: Monthly credits
+        name: credits
+        type: quota
+        metric: credit
+        limit: 625
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Gen-4.5/4/Turbo video
+      - name: All third-party video/image models
+      - name: Upscale + watermark removal
+      - name: 100 GB asset storage
+      - name: Unlimited video editor projects
+  - id: runway-pro
+    name: Pro
+    type: paid
+    description: $28/month annual ($336/yr); 2,250 monthly credits.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '28.00'
+        userMultiplied: false
+      - label: Monthly credits
+        name: credits
+        type: quota
+        metric: credit
+        limit: 2250
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Custom Voices for Lip Sync/TTS
+      - name: 500 GB asset storage
+  - id: runway-unlimited
+    name: Unlimited
+    type: paid
+    description: $76/month annual ($912/yr); 2,250 credits + unlimited Explore Mode.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '76.00'
+        userMultiplied: false
+      - label: Monthly credits
+        name: credits
+        type: quota
+        metric: credit
+        limit: 2250
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Explore Mode unlimited image/video generations
+  - id: runway-enterprise
+    name: Enterprise
+    type: enterprise
+    description: Custom pricing.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: SSO
+      - name: Custom org/team spaces
+      - name: Advanced security/compliance
+      - name: Enterprise onboarding
+      - name: Priority support
+      - name: Internal tool integrations
+      - name: Workspace Analytics

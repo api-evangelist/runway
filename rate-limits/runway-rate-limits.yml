@@ -1,0 +1,29 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Runway
+providerId: runway
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Video Generation
+description: Runway API enforces concurrent request limits per organization.
+sources:
+  - https://runwayml.com/pricing
+  - https://docs.dev.runwayml.com/
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: Concurrent generations
+    scope: org
+    metric: concurrent
+    limit: varies by plan
+  - name: API requests
+    scope: org
+    metric: requests_per_minute
+    limit: 60
+    timeFrame: minute
