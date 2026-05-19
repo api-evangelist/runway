@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Runway Video Generation API — Image to Video
+  description: 'Runway Video Generation API — Image to Video. 1 operations. Lead operation: Create image-to-video generation
+    task. Self-contained Naftiko capability covering one Runway business surface.'
+  tags:
+  - Runway
+  - Image to Video
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RUNWAY_API_KEY: RUNWAY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: video-generation-image-to-video
+    baseUri: https://api.dev.runwayml.com/v1
+    description: Runway Video Generation API — Image to Video business capability. Self-contained, no shared references.
+    resources:
+    - name: image_to_video
+      path: /image_to_video
+      operations:
+      - name: createimagetovideo
+        method: POST
+        description: Create image-to-video generation task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RUNWAY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: video-generation-image-to-video-rest
+    port: 8080
+    description: REST adapter for Runway Video Generation API — Image to Video. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/image-to-video
+      name: image-to-video
+      description: REST surface for image_to_video.
+      operations:
+      - method: POST
+        name: createimagetovideo
+        description: Create image-to-video generation task
+        call: video-generation-image-to-video.createimagetovideo
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: video-generation-image-to-video-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Runway Video Generation API — Image to Video. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: create-image-video-generation-task
+      description: Create image-to-video generation task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: video-generation-image-to-video.createimagetovideo
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

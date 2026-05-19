@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Runway Video Generation API — Frame Interpolation
+  description: 'Runway Video Generation API — Frame Interpolation. 1 operations. Lead operation: Create frame interpolation
+    task. Self-contained Naftiko capability covering one Runway business surface.'
+  tags:
+  - Runway
+  - Frame Interpolation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RUNWAY_API_KEY: RUNWAY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: video-generation-frame-interpolation
+    baseUri: https://api.dev.runwayml.com/v1
+    description: Runway Video Generation API — Frame Interpolation business capability. Self-contained, no shared references.
+    resources:
+    - name: frame_interpolation
+      path: /frame_interpolation
+      operations:
+      - name: createframeinterpolation
+        method: POST
+        description: Create frame interpolation task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RUNWAY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: video-generation-frame-interpolation-rest
+    port: 8080
+    description: REST adapter for Runway Video Generation API — Frame Interpolation. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/frame-interpolation
+      name: frame-interpolation
+      description: REST surface for frame_interpolation.
+      operations:
+      - method: POST
+        name: createframeinterpolation
+        description: Create frame interpolation task
+        call: video-generation-frame-interpolation.createframeinterpolation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: video-generation-frame-interpolation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Runway Video Generation API — Frame Interpolation. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: create-frame-interpolation-task
+      description: Create frame interpolation task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: video-generation-frame-interpolation.createframeinterpolation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
