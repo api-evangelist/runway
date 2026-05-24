@@ -213,6 +213,8 @@ common:
 - name: Agent Skills
   url: https://github.com/runwayml/runway-characters-meeting-skill
   type: AgentSkill
+- type: LLMsTxt
+  url: https://docs.dev.runwayml.com/llms.txt
 maintainers:
 - FN: API Evangelist
   email: info@apievangelist.com
