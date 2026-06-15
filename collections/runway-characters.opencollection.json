@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Characters API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Avatars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new avatar",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/avatars",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new persistent avatar persona with a defined appearance, voice, and personality. The avatar is created from a single reference image and can be used across multiple sessions. Supports photorealistic or animated styles, human or non-human appearances."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Realtime Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new realtime session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/realtime_sessions",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new realtime WebRTC session connecting a user to an avatar for a live conversational interaction. The session returns WebRTC credentials (server URL, token, and room name) that can only be retrieved once. If the WebRTC connection fails after credentials are consumed, a new session must be created. Sessions have a maximum duration of 5 minutes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a knowledge document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/documents",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a domain-specific knowledge document that can be attached to avatars. Documents provide additional context that avatars can reference during conversations to give accurate, contextual responses. Each avatar supports up to 50,000 tokens of knowledge across all attached documents."
+        },
+        {
+          "info": {
+            "name": "Delete a knowledge document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dev.runwayml.com/v1/documents/:id",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a previously uploaded knowledge document by its unique identifier. This removes the document from any avatars it was attached to."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Image Generation API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Text to Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create text-to-image generation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/text_to_image",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to generate an image from a text prompt using the Gen-4 Image model. The prompt describes what should appear in the generated image. Returns a task ID that can be polled for completion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve task status and output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dev.runwayml.com/v1/tasks/:id",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the task, returned when the task was created."
+              }
+            ]
+          },
+          "docs": "Retrieves the current status and output of an asynchronous image generation task by its unique identifier. Poll this endpoint until the task status indicates completion. When a task succeeds, the response includes output URLs linking to the generated image."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

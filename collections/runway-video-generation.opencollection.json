@@ -1,0 +1,335 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Video Generation API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image to Video",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create image-to-video generation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/image_to_video",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to generate a video from an input image. Optionally accepts a text prompt to guide the generation. Supports Gen-4, Gen-4 Turbo, Gen-4.5, and Aleph models. Returns a task ID that can be polled for completion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Text to Video",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create text-to-video generation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/text_to_video",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to generate a video from a text prompt alone, without requiring an input image. Supported by Gen-4.5, Veo 3.1, and Veo 3.1 Fast models. Returns a task ID that can be polled for completion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Video to Video",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create video-to-video generation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/video_to_video",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to generate a video from an existing video input using the Gen-4 Aleph model. The input video serves as a reference for the generation, with a text prompt guiding the transformation. Returns a task ID that can be polled for completion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Character Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create character performance (Act Two) task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/character_performance",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to control a character's facial expressions and body movements using a reference performance video. Uses the Act Two model to animate a character image or video based on a driving reference. Returns a task ID that can be polled for completion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lip Sync",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create lip sync generation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/lip_sync",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to create a generative video where a selected face speaks lines from audio clips or AI-generated voices. Supports 28+ languages using the eleven_multilingual_v2 model. Returns a task ID that can be polled for completion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Video Upscale",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create video upscale task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/video_upscale",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to upscale a video to higher resolution and quality. Accepts a video asset and returns a task ID that can be polled for completion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Frame Interpolation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create frame interpolation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/frame_interpolation",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to interpolate between video frames, increasing the frame rate and smoothness of the output video. Returns a task ID that can be polled for completion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sound Effects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create sound effect generation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/sound_effect",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to generate sound effects for a video using AI. Returns a task ID that can be polled for completion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve task status and output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dev.runwayml.com/v1/tasks/:id",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the task, returned when the task was created."
+              }
+            ]
+          },
+          "docs": "Retrieves the current status and output of an asynchronous generation task by its unique identifier. Poll this endpoint until the task status indicates completion (SUCCEEDED or FAILED). When a task succeeds, the response includes output URLs linking to the generated media."
+        },
+        {
+          "info": {
+            "name": "Cancel or delete a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dev.runwayml.com/v1/tasks/:id",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the task, returned when the task was created."
+              }
+            ]
+          },
+          "docs": "Cancels a pending task or deletes a completed task by its unique identifier. This operation cannot be undone."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Uploads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a temporary media file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/uploads",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a temporary media file that can be referenced in subsequent API generation requests using a runway:// URI. The response includes an upload URL and form fields to complete the multipart upload. Once the upload completes, the runway:// URI is ready to use in generation requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
