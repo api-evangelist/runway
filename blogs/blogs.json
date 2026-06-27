@@ -3,16 +3,13 @@
   "feeds": [
     {
       "source": "https://runwayml.com/blog",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://runwayml.com/terms-of-use",
-      "feed_url": "https://runwayml.com/terms-of-use",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape",
+      "error": "JS-rendered SPA; no dated posts extractable from /blog or /news"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T13:06:43Z",
+  "agent_pulled": "2026-06-27"
 }

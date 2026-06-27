@@ -48,7 +48,7 @@ apis:
         url: https://docs.dev.runwayml.com/api/
       - type: OpenAPI
         url: openapi/runway-video-generation-openapi.yml
-      - type: Spectral Rules
+      - type: SpectralRules
         url: rules/runway-rules.yml
   - aid: runway:image-generation
     name: Runway Image Generation API
@@ -71,7 +71,7 @@ apis:
         url: https://docs.dev.runwayml.com/api/
       - type: OpenAPI
         url: openapi/runway-image-generation-openapi.yml
-      - type: Spectral Rules
+      - type: SpectralRules
         url: rules/runway-rules.yml
   - aid: runway:characters
     name: Runway Characters API
@@ -99,7 +99,7 @@ apis:
         url: openapi/runway-characters-openapi.yml
       - type: AsyncAPI
         url: asyncapi/runway-characters-asyncapi.yml
-      - type: Spectral Rules
+      - type: SpectralRules
         url: rules/runway-rules.yml
   - aid: runway:python-sdk
     name: Runway Python SDK
@@ -147,7 +147,7 @@ common:
     url: https://docs.dev.runwayml.com/api/
   - type: Website
     url: https://runwayml.com/
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://dev.runwayml.com/
   - type: PrivacyPolicy
     url: https://runwayml.com/privacy-policy
@@ -191,8 +191,8 @@ common:
     type: MCPServer
   - name: Agent Skills
     url: https://github.com/runwayml/runway-characters-meeting-skill
-    type: AgentSkill
-  - type: LLMsTxt
+    type: AgentSkills
+  - type: LlmsText
     url: https://docs.dev.runwayml.com/llms.txt
 maintainers:
   - FN: API Evangelist
