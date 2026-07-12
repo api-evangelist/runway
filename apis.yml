@@ -139,6 +139,10 @@ apis:
       - type: GitHubRepository
         url: https://github.com/runwayml/sdk-node
 common:
+  - type: DomainSecurity
+    url: security/runway-domain-security.yml
+  - type: Authentication
+    url: authentication/runway-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/runwayml
   - type: Portal

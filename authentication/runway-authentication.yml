@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/runway-characters-openapi.yml, openapi/runway-image-generation-openapi.yml,
+  openapi/runway-video-generation-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: API key passed via the HTTP Authorization header using the Bearer scheme. Obtain
+    your API key from the Runway Developer Portal at https://dev.runwayml.com/.
+  sources:
+  - openapi/runway-characters-openapi.yml
+  - openapi/runway-image-generation-openapi.yml
+  - openapi/runway-video-generation-openapi.yml
