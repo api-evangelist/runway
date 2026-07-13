@@ -2,14 +2,14 @@
   "repo": "runway",
   "feeds": [
     {
-      "source": "https://runwayml.com/blog",
-      "feed_url": "",
+      "source": "https://runwayml.com/terms-of-use",
+      "feed_url": "https://runwayml.com/terms-of-use",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape",
-      "error": "JS-rendered SPA; no dated posts extractable from /blog or /news"
+      "method": "none"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-27T13:06:43Z",
-  "agent_pulled": "2026-06-27"
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
