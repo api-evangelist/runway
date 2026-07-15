@@ -139,6 +139,8 @@ apis:
       - type: GitHubRepository
         url: https://github.com/runwayml/sdk-node
 common:
+  - type: AgenticAccess
+    url: agentic-access/runway-agentic-access.yml
   - type: DomainSecurity
     url: security/runway-domain-security.yml
   - type: Authentication
