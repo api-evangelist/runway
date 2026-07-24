@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: Runway Characters Avatars Video to Video API
+  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.
+  version: '2024-11-06'
+  contact:
+    name: Runway Support
+    url: https://support.runwayml.com/
+  termsOfService: https://runwayml.com/terms-of-use
+servers:
+- url: https://api.dev.runwayml.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Video to Video
+  description: Generate new videos from existing video inputs using the Gen-4 Aleph model.
+paths:
+  /video_to_video:
+    post:
+      operationId: createVideoToVideo
+      summary: Create video-to-video generation task
+      description: Starts a new asynchronous task to generate a video from an existing video input using the Gen-4 Aleph model. The input video serves as a reference for the generation, with a text prompt guiding the transformation. Returns a task ID that can be polled for completion.
+      tags:
+      - Video to Video
+      parameters:
+      - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoToVideoRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+        - '2024-11-06'
+  schemas:
+    VideoToVideoRequest:
+      type: object
+      required:
+      - model
+      - promptVideo
+      - promptText
+      properties:
+        model:
+          type: string
+          description: The model to use for video-to-video generation. Currently supports the Gen-4 Aleph model.
+          enum:
+          - gen4_aleph
+        promptVideo:
+          type: string
+          description: An HTTPS URL or runway:// URI pointing to the input video to transform.
+        promptText:
+          type: string
+          description: A text description of up to 1000 characters guiding the transformation of the input video.
+          maxLength: 1000
+        ratio:
+          type: string
+          description: The aspect ratio of the output video.
+          enum:
+          - 1280:720
+          - 1584:672
+          - 1104:832
+          - 720:1280
+          - 832:1104
+          - 960:960
+    TaskCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the created task. Use this ID to poll the task status endpoint.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed via the HTTP Authorization header using the Bearer scheme. Obtain your API key from the Runway Developer Portal at https://dev.runwayml.com/.
+externalDocs:
+  description: Runway Characters Documentation
+  url: https://docs.dev.runwayml.com/characters/

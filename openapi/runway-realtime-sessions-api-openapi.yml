@@ -1,0 +1,171 @@
+openapi: 3.1.0
+info:
+  title: Runway Characters Avatars Realtime Sessions API
+  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.
+  version: '2024-11-06'
+  contact:
+    name: Runway Support
+    url: https://support.runwayml.com/
+  termsOfService: https://runwayml.com/terms-of-use
+servers:
+- url: https://api.dev.runwayml.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Realtime Sessions
+  description: Create live WebRTC sessions connecting users to avatars for real-time conversational interactions. Each session has a maximum duration of 5 minutes.
+paths:
+  /realtime_sessions:
+    post:
+      operationId: createRealtimeSession
+      summary: Create a new realtime session
+      description: Creates a new realtime WebRTC session connecting a user to an avatar for a live conversational interaction. The session returns WebRTC credentials (server URL, token, and room name) that can only be retrieved once. If the WebRTC connection fails after credentials are consumed, a new session must be created. Sessions have a maximum duration of 5 minutes.
+      tags:
+      - Realtime Sessions
+      parameters:
+      - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRealtimeSessionRequest'
+      responses:
+        '200':
+          description: Session created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RealtimeSession'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CreateRealtimeSessionRequest:
+      type: object
+      required:
+      - model
+      - avatar
+      properties:
+        model:
+          type: string
+          description: The realtime session model type. Must be set to gwm1_avatars.
+          enum:
+          - gwm1_avatars
+        avatar:
+          oneOf:
+          - $ref: '#/components/schemas/PresetAvatarConfig'
+          - $ref: '#/components/schemas/CustomAvatarConfig'
+          description: Avatar configuration for the session. Can be a preset avatar or a custom avatar created via the avatars endpoint.
+        maxSessionDurationSeconds:
+          type: integer
+          description: Maximum session duration in seconds. Sessions have an absolute maximum of 300 seconds (5 minutes).
+          maximum: 300
+        personality:
+          type: string
+          description: Optional override for the avatar personality for this session only. If not provided, the avatar's default personality is used.
+        startScript:
+          type: string
+          description: Optional override for the avatar's opening script for this session only. If not provided, the avatar's default opening message is used.
+    RealtimeSession:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the session.
+        status:
+          type: string
+          description: The current status of the session.
+          enum:
+          - PENDING
+          - READY
+          - ACTIVE
+          - ENDED
+        serverUrl:
+          type: string
+          format: uri
+          description: The WebRTC server URL to connect to for this session.
+        token:
+          type: string
+          description: The authentication token for the WebRTC connection. Can only be retrieved once.
+        roomName:
+          type: string
+          description: The name of the WebRTC room to join.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
+    PresetAvatarConfig:
+      type: object
+      required:
+      - type
+      - presetId
+      properties:
+        type:
+          type: string
+          description: Indicates this is a preset avatar configuration.
+          enum:
+          - preset
+        presetId:
+          type: string
+          description: The identifier of a preset avatar. Available presets include game-character, music-superstar, game-character-man, cat-character, influencer, tennis-coach, human-resource, fashion-designer, and cooking-teacher.
+          enum:
+          - game-character
+          - music-superstar
+          - game-character-man
+          - cat-character
+          - influencer
+          - tennis-coach
+          - human-resource
+          - fashion-designer
+          - cooking-teacher
+    CustomAvatarConfig:
+      type: object
+      required:
+      - type
+      - avatarId
+      properties:
+        type:
+          type: string
+          description: Indicates this is a custom avatar configuration.
+          enum:
+          - custom
+        avatarId:
+          type: string
+          format: uuid
+          description: The unique identifier of a custom avatar created via the avatars endpoint.
+  parameters:
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+        - '2024-11-06'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed via the HTTP Authorization header using the Bearer scheme. Obtain your API key from the Runway Developer Portal at https://dev.runwayml.com/.
+externalDocs:
+  description: Runway Characters Documentation
+  url: https://docs.dev.runwayml.com/characters/

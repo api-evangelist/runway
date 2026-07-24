@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+  title: Runway Characters Avatars Character Performance API
+  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.
+  version: '2024-11-06'
+  contact:
+    name: Runway Support
+    url: https://support.runwayml.com/
+  termsOfService: https://runwayml.com/terms-of-use
+servers:
+- url: https://api.dev.runwayml.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Character Performance
+  description: Control a character's facial expressions and body movements using a reference performance video with the Act Two model.
+paths:
+  /character_performance:
+    post:
+      operationId: createCharacterPerformance
+      summary: Create character performance (Act Two) task
+      description: Starts a new asynchronous task to control a character's facial expressions and body movements using a reference performance video. Uses the Act Two model to animate a character image or video based on a driving reference. Returns a task ID that can be polled for completion.
+      tags:
+      - Character Performance
+      parameters:
+      - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CharacterPerformanceRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CharacterPerformanceRequest:
+      type: object
+      required:
+      - model
+      - character
+      - reference
+      properties:
+        model:
+          type: string
+          description: The model to use for character performance. Must be set to act_two.
+          enum:
+          - act_two
+        character:
+          type: object
+          description: The character to animate. Accepts either an image or video with a URI.
+          required:
+          - type
+          - uri
+          properties:
+            type:
+              type: string
+              description: The media type of the character input.
+              enum:
+              - image
+              - video
+            uri:
+              type: string
+              description: An HTTPS URL or runway:// URI pointing to the character media.
+        reference:
+          type: object
+          description: The driving performance reference. Accepts either an image or video with a URI that controls the character's movements.
+          required:
+          - type
+          - uri
+          properties:
+            type:
+              type: string
+              description: The media type of the reference input.
+              enum:
+              - image
+              - video
+            uri:
+              type: string
+              description: An HTTPS URL or runway:// URI pointing to the reference media.
+        ratio:
+          type: string
+          description: The aspect ratio of the output video.
+          enum:
+          - 1280:720
+          - 1584:672
+          - 1104:832
+          - 720:1280
+          - 832:1104
+          - 960:960
+    TaskCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the created task. Use this ID to poll the task status endpoint.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
+  parameters:
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+        - '2024-11-06'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed via the HTTP Authorization header using the Bearer scheme. Obtain your API key from the Runway Developer Portal at https://dev.runwayml.com/.
+externalDocs:
+  description: Runway Characters Documentation
+  url: https://docs.dev.runwayml.com/characters/

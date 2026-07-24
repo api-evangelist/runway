@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Runway Characters Avatars Image to Video API
+  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.
+  version: '2024-11-06'
+  contact:
+    name: Runway Support
+    url: https://support.runwayml.com/
+  termsOfService: https://runwayml.com/terms-of-use
+servers:
+- url: https://api.dev.runwayml.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Image to Video
+  description: Generate videos from input images with optional text prompts using Gen-4, Gen-4 Turbo, Gen-4.5, or Aleph models.
+paths:
+  /image_to_video:
+    post:
+      operationId: createImageToVideo
+      summary: Create image-to-video generation task
+      description: Starts a new asynchronous task to generate a video from an input image. Optionally accepts a text prompt to guide the generation. Supports Gen-4, Gen-4 Turbo, Gen-4.5, and Aleph models. Returns a task ID that can be polled for completion.
+      tags:
+      - Image to Video
+      parameters:
+      - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageToVideoRequest'
+      responses:
+        '200':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+        - '2024-11-06'
+  schemas:
+    ImageToVideoRequest:
+      type: object
+      required:
+      - model
+      - promptImage
+      properties:
+        model:
+          type: string
+          description: The model to use for generation. Supported values include gen4, gen4_turbo, gen4.5, and gen4_aleph.
+          enum:
+          - gen4
+          - gen4_turbo
+          - gen4.5
+          - gen4_aleph
+        promptImage:
+          type: string
+          description: An HTTPS URL, runway:// URI, or data URI containing an encoded image to use as the input for video generation.
+        promptText:
+          type: string
+          description: A text description of up to 1000 characters that describes in detail what should appear in the generated output video.
+          maxLength: 1000
+        duration:
+          type: integer
+          description: The duration of the generated video in seconds. Common values are 5 and 10.
+          enum:
+          - 5
+          - 10
+        ratio:
+          type: string
+          description: The aspect ratio of the output video. Supported landscape ratios include 1280:720, 1584:672, 1104:832. Portrait ratios include 720:1280, 832:1104. Square ratio is 960:960.
+          enum:
+          - 1280:720
+          - 1584:672
+          - 1104:832
+          - 720:1280
+          - 832:1104
+          - 960:960
+    TaskCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the created task. Use this ID to poll the task status endpoint.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed via the HTTP Authorization header using the Bearer scheme. Obtain your API key from the Runway Developer Portal at https://dev.runwayml.com/.
+externalDocs:
+  description: Runway Characters Documentation
+  url: https://docs.dev.runwayml.com/characters/

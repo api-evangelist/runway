@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  title: Runway Characters Avatars Documents API
+  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.
+  version: '2024-11-06'
+  contact:
+    name: Runway Support
+    url: https://support.runwayml.com/
+  termsOfService: https://runwayml.com/terms-of-use
+servers:
+- url: https://api.dev.runwayml.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Documents
+  description: Upload and manage domain-specific knowledge documents that avatars can reference during conversations to provide accurate, contextual responses. Each avatar supports up to 50,000 tokens of knowledge.
+paths:
+  /documents:
+    post:
+      operationId: createDocument
+      summary: Upload a knowledge document
+      description: Uploads a domain-specific knowledge document that can be attached to avatars. Documents provide additional context that avatars can reference during conversations to give accurate, contextual responses. Each avatar supports up to 50,000 tokens of knowledge across all attached documents.
+      tags:
+      - Documents
+      parameters:
+      - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDocumentRequest'
+      responses:
+        '200':
+          description: Document uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /documents/{id}:
+    delete:
+      operationId: deleteDocument
+      summary: Delete a knowledge document
+      description: Deletes a previously uploaded knowledge document by its unique identifier. This removes the document from any avatars it was attached to.
+      tags:
+      - Documents
+      parameters:
+      - $ref: '#/components/parameters/RunwayVersion'
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier of the document to delete.
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: Document deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the uploaded document.
+        name:
+          type: string
+          description: The name of the document.
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the document was uploaded.
+    CreateDocumentRequest:
+      type: object
+      required:
+      - name
+      - content
+      properties:
+        name:
+          type: string
+          description: A human-readable name for the knowledge document.
+        content:
+          type: string
+          description: The text content of the knowledge document that avatars can reference during conversations. Each avatar supports up to 50,000 tokens of knowledge across all attached documents.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
+  parameters:
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+        - '2024-11-06'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed via the HTTP Authorization header using the Bearer scheme. Obtain your API key from the Runway Developer Portal at https://dev.runwayml.com/.
+externalDocs:
+  description: Runway Characters Documentation
+  url: https://docs.dev.runwayml.com/characters/

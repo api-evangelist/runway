@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Runway Characters Avatars Uploads API
+  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.
+  version: '2024-11-06'
+  contact:
+    name: Runway Support
+    url: https://support.runwayml.com/
+  termsOfService: https://runwayml.com/terms-of-use
+servers:
+- url: https://api.dev.runwayml.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Uploads
+  description: Upload temporary media files that can be referenced in generation requests.
+paths:
+  /uploads:
+    post:
+      operationId: createUpload
+      summary: Upload a temporary media file
+      description: Uploads a temporary media file that can be referenced in subsequent API generation requests using a runway:// URI. The response includes an upload URL and form fields to complete the multipart upload. Once the upload completes, the runway:// URI is ready to use in generation requests.
+      tags:
+      - Uploads
+      parameters:
+      - $ref: '#/components/parameters/RunwayVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadRequest'
+      responses:
+        '200':
+          description: Upload initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+        '400':
+          description: Bad request - invalid filename or unsupported media type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+        - '2024-11-06'
+  schemas:
+    UploadRequest:
+      type: object
+      required:
+      - filename
+      properties:
+        filename:
+          type: string
+          description: The filename of the file to upload. Must have a valid file extension corresponding to a supported media type (image, video, or audio).
+    UploadResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the uploaded file, usable as a runway:// URI in generation requests.
+        uploadUrl:
+          type: string
+          format: uri
+          description: The presigned URL to upload the file to via a multipart POST request.
+        fields:
+          type: object
+          description: A dictionary of form fields to include in the multipart POST request when uploading to the uploadUrl.
+          additionalProperties:
+            type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed via the HTTP Authorization header using the Bearer scheme. Obtain your API key from the Runway Developer Portal at https://dev.runwayml.com/.
+externalDocs:
+  description: Runway Characters Documentation
+  url: https://docs.dev.runwayml.com/characters/
