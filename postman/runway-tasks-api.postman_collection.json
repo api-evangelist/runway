@@ -1,0 +1,447 @@
+{
+  "info": {
+    "_postman_id": "4a69d924-4136-461a-b02e-3b9ea6d25a19",
+    "name": "Runway Characters Avatars Tasks API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:25.000Z",
+    "updatedAt": "2026-07-28T02:49:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4a69d924-4136-461a-b02e-3b9ea6d25a19"
+  },
+  "item": [
+    {
+      "name": "tasks",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve task status and output",
+              "id": "d57e7d13-d88c-4723-94fc-18e366fc7b02",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "31e373a4-7d00-400c-b939-d2f26a2ed534",
+                      "key": "id",
+                      "value": "<uuid>",
+                      "description": "(Required) The unique identifier of the task, returned when the task was created."
+                    }
+                  ]
+                },
+                "description": "Retrieves the current status and output of an asynchronous image generation task by its unique identifier. Poll this endpoint until the task status indicates completion. When a task succeeds, the response includes output URLs linking to the generated image."
+              },
+              "response": [
+                {
+                  "id": "6d1a1539-5a19-4e61-ae93-d8443741184e",
+                  "name": "Task status retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                        "key": "X-Runway-Version",
+                        "value": "2024-11-06"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"PENDING\",\n  \"createdAt\": \"<dateTime>\",\n  \"output\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"failure\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:49:25.000Z",
+                  "updatedAt": "2026-07-28T02:49:25.000Z",
+                  "uid": "35240-6d1a1539-5a19-4e61-ae93-d8443741184e"
+                },
+                {
+                  "id": "9638d662-5eb4-400f-9208-7a331a3eadad",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                        "key": "X-Runway-Version",
+                        "value": "2024-11-06"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:49:25.000Z",
+                  "updatedAt": "2026-07-28T02:49:25.000Z",
+                  "uid": "35240-9638d662-5eb4-400f-9208-7a331a3eadad"
+                },
+                {
+                  "id": "27c39916-63b9-4698-b3d6-227cc76b71df",
+                  "name": "Task not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                        "key": "X-Runway-Version",
+                        "value": "2024-11-06"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:49:25.000Z",
+                  "updatedAt": "2026-07-28T02:49:25.000Z",
+                  "uid": "35240-27c39916-63b9-4698-b3d6-227cc76b71df"
+                }
+              ],
+              "createdAt": "2026-07-28T02:49:25.000Z",
+              "updatedAt": "2026-07-28T02:49:25.000Z",
+              "uid": "35240-d57e7d13-d88c-4723-94fc-18e366fc7b02"
+            },
+            {
+              "name": "Cancel or delete a task",
+              "id": "daf30753-9749-4bd0-af49-23bec89e2115",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tasks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tasks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3dc31e20-14a2-49fb-a98f-8b16fbb4d24a",
+                      "key": "id",
+                      "value": "<uuid>",
+                      "description": "(Required) The unique identifier of the task, returned when the task was created."
+                    }
+                  ]
+                },
+                "description": "Cancels a pending task or deletes a completed task by its unique identifier. This operation cannot be undone."
+              },
+              "response": [
+                {
+                  "id": "65dfd419-e858-4769-b0ce-4e2f726792ab",
+                  "name": "Task deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                        "key": "X-Runway-Version",
+                        "value": "2024-11-06"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:49:25.000Z",
+                  "updatedAt": "2026-07-28T02:49:25.000Z",
+                  "uid": "35240-65dfd419-e858-4769-b0ce-4e2f726792ab"
+                },
+                {
+                  "id": "2a77cb83-bd22-4935-a844-23be082746ae",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                        "key": "X-Runway-Version",
+                        "value": "2024-11-06"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:49:25.000Z",
+                  "updatedAt": "2026-07-28T02:49:25.000Z",
+                  "uid": "35240-2a77cb83-bd22-4935-a844-23be082746ae"
+                },
+                {
+                  "id": "b014fe7a-d7ee-4e06-9500-488761b9a5e4",
+                  "name": "Task not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                        "key": "X-Runway-Version",
+                        "value": "2024-11-06"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:49:25.000Z",
+                  "updatedAt": "2026-07-28T02:49:25.000Z",
+                  "uid": "35240-b014fe7a-d7ee-4e06-9500-488761b9a5e4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:49:25.000Z",
+              "updatedAt": "2026-07-28T02:49:25.000Z",
+              "uid": "35240-daf30753-9749-4bd0-af49-23bec89e2115"
+            }
+          ],
+          "id": "e47a1e32-e5b3-4e35-a23b-7ac62b8c47e0",
+          "createdAt": "2026-07-28T02:49:25.000Z",
+          "updatedAt": "2026-07-28T02:49:25.000Z",
+          "uid": "35240-e47a1e32-e5b3-4e35-a23b-7ac62b8c47e0"
+        }
+      ],
+      "id": "4a2d462b-337d-4214-ac9f-ad0022bcf6d2",
+      "createdAt": "2026-07-28T02:49:25.000Z",
+      "updatedAt": "2026-07-28T02:49:25.000Z",
+      "uid": "35240-4a2d462b-337d-4214-ac9f-ad0022bcf6d2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

@@ -1,0 +1,476 @@
+{
+  "info": {
+    "_postman_id": "52928edf-576f-4376-9b99-7ef95ab4af37",
+    "name": "Runway Characters Avatars Documents API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:18.000Z",
+    "updatedAt": "2026-07-28T02:49:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52928edf-576f-4376-9b99-7ef95ab4af37"
+  },
+  "item": [
+    {
+      "name": "documents",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Delete a knowledge document",
+              "id": "d60aa24d-a76f-4be8-b169-613e7af50215",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/documents/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "18315eff-53b0-4ce5-8420-41b868aac092",
+                      "key": "id",
+                      "value": "<uuid>",
+                      "description": "(Required) The unique identifier of the document to delete."
+                    }
+                  ]
+                },
+                "description": "Deletes a previously uploaded knowledge document by its unique identifier. This removes the document from any avatars it was attached to."
+              },
+              "response": [
+                {
+                  "id": "170bd2c9-b68c-47d4-889a-d25397afe915",
+                  "name": "Document deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                        "key": "X-Runway-Version",
+                        "value": "2024-11-06"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:49:18.000Z",
+                  "updatedAt": "2026-07-28T02:49:18.000Z",
+                  "uid": "35240-170bd2c9-b68c-47d4-889a-d25397afe915"
+                },
+                {
+                  "id": "f6935cc3-5ee7-4520-95f6-c76522def965",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                        "key": "X-Runway-Version",
+                        "value": "2024-11-06"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:49:18.000Z",
+                  "updatedAt": "2026-07-28T02:49:18.000Z",
+                  "uid": "35240-f6935cc3-5ee7-4520-95f6-c76522def965"
+                },
+                {
+                  "id": "a1f7db2b-5e6e-46cc-a573-b5dce202f19a",
+                  "name": "Document not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                        "key": "X-Runway-Version",
+                        "value": "2024-11-06"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:49:18.000Z",
+                  "updatedAt": "2026-07-28T02:49:18.000Z",
+                  "uid": "35240-a1f7db2b-5e6e-46cc-a573-b5dce202f19a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:49:18.000Z",
+              "updatedAt": "2026-07-28T02:49:18.000Z",
+              "uid": "35240-d60aa24d-a76f-4be8-b169-613e7af50215"
+            }
+          ],
+          "id": "c4f43800-96ac-4600-a460-ac68efa9a707",
+          "createdAt": "2026-07-28T02:49:18.000Z",
+          "updatedAt": "2026-07-28T02:49:18.000Z",
+          "uid": "35240-c4f43800-96ac-4600-a460-ac68efa9a707"
+        },
+        {
+          "name": "Upload a knowledge document",
+          "id": "4839fc5e-bead-4e47-b511-46e0028e83ee",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"content\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents"
+              ]
+            },
+            "description": "Uploads a domain-specific knowledge document that can be attached to avatars. Documents provide additional context that avatars can reference during conversations to give accurate, contextual responses. Each avatar supports up to 50,000 tokens of knowledge across all attached documents."
+          },
+          "response": [
+            {
+              "id": "ba59ff98-e805-41c5-afec-95d57afe3e68",
+              "name": "Document uploaded successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"content\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:49:18.000Z",
+              "updatedAt": "2026-07-28T02:49:18.000Z",
+              "uid": "35240-ba59ff98-e805-41c5-afec-95d57afe3e68"
+            },
+            {
+              "id": "aa1022a8-6cec-48e4-93ed-ee392e46c3dc",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"content\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:18.000Z",
+              "updatedAt": "2026-07-28T02:49:18.000Z",
+              "uid": "35240-aa1022a8-6cec-48e4-93ed-ee392e46c3dc"
+            },
+            {
+              "id": "6cba9b15-f372-468d-8a5f-516e00d1b6cc",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"content\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:18.000Z",
+              "updatedAt": "2026-07-28T02:49:18.000Z",
+              "uid": "35240-6cba9b15-f372-468d-8a5f-516e00d1b6cc"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:18.000Z",
+          "updatedAt": "2026-07-28T02:49:18.000Z",
+          "uid": "35240-4839fc5e-bead-4e47-b511-46e0028e83ee"
+        }
+      ],
+      "id": "1d04fc9e-213e-4503-95c3-5dacb2b57fc5",
+      "createdAt": "2026-07-28T02:49:18.000Z",
+      "updatedAt": "2026-07-28T02:49:18.000Z",
+      "uid": "35240-1d04fc9e-213e-4503-95c3-5dacb2b57fc5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

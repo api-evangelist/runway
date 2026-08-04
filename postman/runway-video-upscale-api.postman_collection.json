@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "e42bce13-0821-4178-bbe9-84da8955c5f4",
+    "name": "Runway Characters Avatars Video Upscale API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:44.000Z",
+    "updatedAt": "2026-07-28T02:49:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e42bce13-0821-4178-bbe9-84da8955c5f4"
+  },
+  "item": [
+    {
+      "name": "video_upscale",
+      "item": [
+        {
+          "name": "Create video upscale task",
+          "id": "eb074a25-0c5c-4937-8ecd-cf00d17ab73c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"upscale_v1\",\n  \"videoUri\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/video_upscale",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "video_upscale"
+              ]
+            },
+            "description": "Starts a new asynchronous task to upscale a video to higher resolution and quality. Accepts a video asset and returns a task ID that can be polled for completion."
+          },
+          "response": [
+            {
+              "id": "6d0c4e87-b1ab-41c0-82cb-221a9d2817c7",
+              "name": "Task created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"upscale_v1\",\n  \"videoUri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/video_upscale",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "video_upscale"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\"\n}",
+              "createdAt": "2026-07-28T02:49:45.000Z",
+              "updatedAt": "2026-07-28T02:49:45.000Z",
+              "uid": "35240-6d0c4e87-b1ab-41c0-82cb-221a9d2817c7"
+            },
+            {
+              "id": "21afa103-e609-4ac4-add5-8953b92dd095",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"upscale_v1\",\n  \"videoUri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/video_upscale",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "video_upscale"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:45.000Z",
+              "updatedAt": "2026-07-28T02:49:45.000Z",
+              "uid": "35240-21afa103-e609-4ac4-add5-8953b92dd095"
+            },
+            {
+              "id": "d116753c-2989-4738-ae23-e4b72ee467e6",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"upscale_v1\",\n  \"videoUri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/video_upscale",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "video_upscale"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:45.000Z",
+              "updatedAt": "2026-07-28T02:49:45.000Z",
+              "uid": "35240-d116753c-2989-4738-ae23-e4b72ee467e6"
+            },
+            {
+              "id": "60200022-8fa5-4191-958a-0743b40bc911",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"upscale_v1\",\n  \"videoUri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/video_upscale",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "video_upscale"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:45.000Z",
+              "updatedAt": "2026-07-28T02:49:45.000Z",
+              "uid": "35240-60200022-8fa5-4191-958a-0743b40bc911"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:45.000Z",
+          "updatedAt": "2026-07-28T02:49:45.000Z",
+          "uid": "35240-eb074a25-0c5c-4937-8ecd-cf00d17ab73c"
+        }
+      ],
+      "id": "fa2f4af1-f3a7-4e9d-94db-20c047892ecc",
+      "createdAt": "2026-07-28T02:49:45.000Z",
+      "updatedAt": "2026-07-28T02:49:45.000Z",
+      "uid": "35240-fa2f4af1-f3a7-4e9d-94db-20c047892ecc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

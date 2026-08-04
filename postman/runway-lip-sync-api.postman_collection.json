@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "e2554fd8-eac4-48d0-b5f2-31f3835314e4",
+    "name": "Runway Characters Avatars Lip Sync API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:20.000Z",
+    "updatedAt": "2026-07-28T02:49:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e2554fd8-eac4-48d0-b5f2-31f3835314e4"
+  },
+  "item": [
+    {
+      "name": "lip_sync",
+      "item": [
+        {
+          "name": "Create lip sync generation task",
+          "id": "7f718b2f-72fe-4ee2-8d78-592df678be29",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"gen4\",\n  \"input\": \"<string>\",\n  \"audio\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/lip_sync",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "lip_sync"
+              ]
+            },
+            "description": "Starts a new asynchronous task to create a generative video where a selected face speaks lines from audio clips or AI-generated voices. Supports 28+ languages using the eleven_multilingual_v2 model. Returns a task ID that can be polled for completion."
+          },
+          "response": [
+            {
+              "id": "d5f380d1-3f38-4a74-a8ce-339f1e1edbd2",
+              "name": "Task created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4\",\n  \"input\": \"<string>\",\n  \"audio\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/lip_sync",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lip_sync"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\"\n}",
+              "createdAt": "2026-07-28T02:49:21.000Z",
+              "updatedAt": "2026-07-28T02:49:21.000Z",
+              "uid": "35240-d5f380d1-3f38-4a74-a8ce-339f1e1edbd2"
+            },
+            {
+              "id": "ca8c096a-7064-41ed-8fe7-eae3625269f7",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4\",\n  \"input\": \"<string>\",\n  \"audio\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/lip_sync",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lip_sync"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:21.000Z",
+              "updatedAt": "2026-07-28T02:49:21.000Z",
+              "uid": "35240-ca8c096a-7064-41ed-8fe7-eae3625269f7"
+            },
+            {
+              "id": "dbf47b03-c641-4456-a8fb-24a12fb53efc",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4\",\n  \"input\": \"<string>\",\n  \"audio\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/lip_sync",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lip_sync"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:21.000Z",
+              "updatedAt": "2026-07-28T02:49:21.000Z",
+              "uid": "35240-dbf47b03-c641-4456-a8fb-24a12fb53efc"
+            },
+            {
+              "id": "22f735db-fcfb-4874-972d-b54922b54cbe",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4\",\n  \"input\": \"<string>\",\n  \"audio\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/lip_sync",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lip_sync"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:21.000Z",
+              "updatedAt": "2026-07-28T02:49:21.000Z",
+              "uid": "35240-22f735db-fcfb-4874-972d-b54922b54cbe"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:21.000Z",
+          "updatedAt": "2026-07-28T02:49:21.000Z",
+          "uid": "35240-7f718b2f-72fe-4ee2-8d78-592df678be29"
+        }
+      ],
+      "id": "284d5cbd-cbca-4f9e-925b-804a356fad01",
+      "createdAt": "2026-07-28T02:49:21.000Z",
+      "updatedAt": "2026-07-28T02:49:21.000Z",
+      "uid": "35240-284d5cbd-cbca-4f9e-925b-804a356fad01"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

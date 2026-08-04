@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "6abc540e-3144-45c4-9236-c831204687fc",
+    "name": "Runway Characters Avatars Image to Video API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:19.000Z",
+    "updatedAt": "2026-07-28T02:49:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6abc540e-3144-45c4-9236-c831204687fc"
+  },
+  "item": [
+    {
+      "name": "image_to_video",
+      "item": [
+        {
+          "name": "Create image-to-video generation task",
+          "id": "c0415374-b383-4dbd-8114-6443e675bdb4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"gen4_turbo\",\n  \"promptImage\": \"<string>\",\n  \"promptText\": \"<string>\",\n  \"duration\": 5,\n  \"ratio\": \"1104:832\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/image_to_video",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "image_to_video"
+              ]
+            },
+            "description": "Starts a new asynchronous task to generate a video from an input image. Optionally accepts a text prompt to guide the generation. Supports Gen-4, Gen-4 Turbo, Gen-4.5, and Aleph models. Returns a task ID that can be polled for completion."
+          },
+          "response": [
+            {
+              "id": "e7523115-2a29-4431-aea0-3b114389a2c6",
+              "name": "Task created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4_turbo\",\n  \"promptImage\": \"<string>\",\n  \"promptText\": \"<string>\",\n  \"duration\": 5,\n  \"ratio\": \"1104:832\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/image_to_video",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "image_to_video"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\"\n}",
+              "createdAt": "2026-07-28T02:49:20.000Z",
+              "updatedAt": "2026-07-28T02:49:20.000Z",
+              "uid": "35240-e7523115-2a29-4431-aea0-3b114389a2c6"
+            },
+            {
+              "id": "bd53e1ed-80d8-4632-a78c-e42fccca2c78",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4_turbo\",\n  \"promptImage\": \"<string>\",\n  \"promptText\": \"<string>\",\n  \"duration\": 5,\n  \"ratio\": \"1104:832\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/image_to_video",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "image_to_video"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:20.000Z",
+              "updatedAt": "2026-07-28T02:49:20.000Z",
+              "uid": "35240-bd53e1ed-80d8-4632-a78c-e42fccca2c78"
+            },
+            {
+              "id": "45f7e0f6-d143-4578-9edb-2f8da33e2633",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4_turbo\",\n  \"promptImage\": \"<string>\",\n  \"promptText\": \"<string>\",\n  \"duration\": 5,\n  \"ratio\": \"1104:832\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/image_to_video",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "image_to_video"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:20.000Z",
+              "updatedAt": "2026-07-28T02:49:20.000Z",
+              "uid": "35240-45f7e0f6-d143-4578-9edb-2f8da33e2633"
+            },
+            {
+              "id": "1741652e-11a2-4942-b46d-77b3860603ea",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4_turbo\",\n  \"promptImage\": \"<string>\",\n  \"promptText\": \"<string>\",\n  \"duration\": 5,\n  \"ratio\": \"1104:832\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/image_to_video",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "image_to_video"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:20.000Z",
+              "updatedAt": "2026-07-28T02:49:20.000Z",
+              "uid": "35240-1741652e-11a2-4942-b46d-77b3860603ea"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:20.000Z",
+          "updatedAt": "2026-07-28T02:49:20.000Z",
+          "uid": "35240-c0415374-b383-4dbd-8114-6443e675bdb4"
+        }
+      ],
+      "id": "db39da75-48e8-49af-b2da-950d5cf2b09b",
+      "createdAt": "2026-07-28T02:49:20.000Z",
+      "updatedAt": "2026-07-28T02:49:20.000Z",
+      "uid": "35240-db39da75-48e8-49af-b2da-950d5cf2b09b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

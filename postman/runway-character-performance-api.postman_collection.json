@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "a1f6c08c-39d2-417e-a2e4-8f97ffcba0c0",
+    "name": "Runway Characters Avatars Character Performance API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:17.000Z",
+    "updatedAt": "2026-07-28T02:49:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a1f6c08c-39d2-417e-a2e4-8f97ffcba0c0"
+  },
+  "item": [
+    {
+      "name": "character_performance",
+      "item": [
+        {
+          "name": "Create character performance (Act Two) task",
+          "id": "e9e1d04f-f3b3-4c64-8736-8db106a6d7ea",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"act_two\",\n  \"character\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"reference\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"ratio\": \"1104:832\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/character_performance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "character_performance"
+              ]
+            },
+            "description": "Starts a new asynchronous task to control a character's facial expressions and body movements using a reference performance video. Uses the Act Two model to animate a character image or video based on a driving reference. Returns a task ID that can be polled for completion."
+          },
+          "response": [
+            {
+              "id": "79758c97-3011-4a30-a521-5adcaa37c39a",
+              "name": "Task created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"act_two\",\n  \"character\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"reference\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"ratio\": \"1104:832\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/character_performance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "character_performance"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\"\n}",
+              "createdAt": "2026-07-28T02:49:17.000Z",
+              "updatedAt": "2026-07-28T02:49:17.000Z",
+              "uid": "35240-79758c97-3011-4a30-a521-5adcaa37c39a"
+            },
+            {
+              "id": "c4dcce5d-b51e-4f7b-a409-9c189d019524",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"act_two\",\n  \"character\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"reference\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"ratio\": \"1104:832\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/character_performance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "character_performance"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:17.000Z",
+              "updatedAt": "2026-07-28T02:49:17.000Z",
+              "uid": "35240-c4dcce5d-b51e-4f7b-a409-9c189d019524"
+            },
+            {
+              "id": "3b4fa91d-cd8f-4f0c-bd37-54277a340e3e",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"act_two\",\n  \"character\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"reference\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"ratio\": \"1104:832\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/character_performance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "character_performance"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:17.000Z",
+              "updatedAt": "2026-07-28T02:49:17.000Z",
+              "uid": "35240-3b4fa91d-cd8f-4f0c-bd37-54277a340e3e"
+            },
+            {
+              "id": "66fe6a87-e1c8-49bc-b666-8df57550b0e1",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"act_two\",\n  \"character\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"reference\": {\n    \"type\": \"video\",\n    \"uri\": \"<string>\"\n  },\n  \"ratio\": \"1104:832\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/character_performance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "character_performance"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:17.000Z",
+              "updatedAt": "2026-07-28T02:49:17.000Z",
+              "uid": "35240-66fe6a87-e1c8-49bc-b666-8df57550b0e1"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:17.000Z",
+          "updatedAt": "2026-07-28T02:49:17.000Z",
+          "uid": "35240-e9e1d04f-f3b3-4c64-8736-8db106a6d7ea"
+        }
+      ],
+      "id": "5aed81e3-f6ab-4142-9a07-8bbef9c60474",
+      "createdAt": "2026-07-28T02:49:17.000Z",
+      "updatedAt": "2026-07-28T02:49:17.000Z",
+      "uid": "35240-5aed81e3-f6ab-4142-9a07-8bbef9c60474"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "info": {
+    "_postman_id": "691156e5-b56f-4ece-baa3-09ba80322fb7",
+    "name": "Runway Characters Avatars Uploads API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:42.000Z",
+    "updatedAt": "2026-07-28T02:49:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-691156e5-b56f-4ece-baa3-09ba80322fb7"
+  },
+  "item": [
+    {
+      "name": "uploads",
+      "item": [
+        {
+          "name": "Upload a temporary media file",
+          "id": "1473d44e-a02e-4946-8fc2-7aecc64ffbf0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filename\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/uploads",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "uploads"
+              ]
+            },
+            "description": "Uploads a temporary media file that can be referenced in subsequent API generation requests using a runway:// URI. The response includes an upload URL and form fields to complete the multipart upload. Once the upload completes, the runway:// URI is ready to use in generation requests."
+          },
+          "response": [
+            {
+              "id": "a153dd33-22e8-43e1-a530-0ef2f6d8387e",
+              "name": "Upload initiated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/uploads",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "uploads"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"uploadUrl\": \"<uri>\",\n  \"fields\": {\n    \"sit5\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:49:43.000Z",
+              "updatedAt": "2026-07-28T02:49:43.000Z",
+              "uid": "35240-a153dd33-22e8-43e1-a530-0ef2f6d8387e"
+            },
+            {
+              "id": "360f904f-c077-45cc-8f72-cf67f306c6e7",
+              "name": "Bad request - invalid filename or unsupported media type",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/uploads",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "uploads"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:43.000Z",
+              "updatedAt": "2026-07-28T02:49:43.000Z",
+              "uid": "35240-360f904f-c077-45cc-8f72-cf67f306c6e7"
+            },
+            {
+              "id": "cb9da447-4c6a-4d08-8631-664c1d7441e7",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/uploads",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "uploads"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:43.000Z",
+              "updatedAt": "2026-07-28T02:49:43.000Z",
+              "uid": "35240-cb9da447-4c6a-4d08-8631-664c1d7441e7"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:43.000Z",
+          "updatedAt": "2026-07-28T02:49:43.000Z",
+          "uid": "35240-1473d44e-a02e-4946-8fc2-7aecc64ffbf0"
+        }
+      ],
+      "id": "86195e13-1ae8-4847-96af-8efb713e516f",
+      "createdAt": "2026-07-28T02:49:43.000Z",
+      "updatedAt": "2026-07-28T02:49:43.000Z",
+      "uid": "35240-86195e13-1ae8-4847-96af-8efb713e516f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

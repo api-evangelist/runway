@@ -1,0 +1,40 @@
+{
+  "provider": "runway",
+  "sources": [
+    "runway-avatars-api-openapi.yml",
+    "runway-character-performance-api-openapi.yml",
+    "runway-documents-api-openapi.yml",
+    "runway-frame-interpolation-api-openapi.yml",
+    "runway-image-to-video-api-openapi.yml",
+    "runway-lip-sync-api-openapi.yml",
+    "runway-realtime-sessions-api-openapi.yml",
+    "runway-sound-effects-api-openapi.yml",
+    "runway-tasks-api-openapi.yml",
+    "runway-text-to-image-api-openapi.yml",
+    "runway-text-to-video-api-openapi.yml",
+    "runway-uploads-api-openapi.yml",
+    "runway-video-to-video-api-openapi.yml",
+    "runway-video-upscale-api-openapi.yml"
+  ],
+  "outputs": [
+    "runway-avatars-api-openapi.yml",
+    "runway-character-performance-api-openapi.yml",
+    "runway-documents-api-openapi.yml",
+    "runway-frame-interpolation-api-openapi.yml",
+    "runway-image-to-video-api-openapi.yml",
+    "runway-lip-sync-api-openapi.yml",
+    "runway-realtime-sessions-api-openapi.yml",
+    "runway-sound-effects-api-openapi.yml",
+    "runway-tasks-api-openapi.yml",
+    "runway-text-to-image-api-openapi.yml",
+    "runway-text-to-video-api-openapi.yml",
+    "runway-uploads-api-openapi.yml",
+    "runway-video-to-video-api-openapi.yml",
+    "runway-video-upscale-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

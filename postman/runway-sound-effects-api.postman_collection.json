@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "b748a09d-57bf-4481-80cf-6a2b67d013a7",
+    "name": "Runway Characters Avatars Sound Effects API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:22.000Z",
+    "updatedAt": "2026-07-28T02:49:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b748a09d-57bf-4481-80cf-6a2b67d013a7"
+  },
+  "item": [
+    {
+      "name": "sound_effect",
+      "item": [
+        {
+          "name": "Create sound effect generation task",
+          "id": "f64a7c6d-1ad1-4585-8832-269126803bae",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"sound_effect_v1\",\n  \"promptText\": \"<string>\",\n  \"videoUri\": \"<string>\",\n  \"duration\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sound_effect",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sound_effect"
+              ]
+            },
+            "description": "Starts a new asynchronous task to generate sound effects for a video using AI. Returns a task ID that can be polled for completion."
+          },
+          "response": [
+            {
+              "id": "9e7d2543-ceba-4e8e-96c2-573568977092",
+              "name": "Task created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"sound_effect_v1\",\n  \"promptText\": \"<string>\",\n  \"videoUri\": \"<string>\",\n  \"duration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sound_effect",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sound_effect"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\"\n}",
+              "createdAt": "2026-07-28T02:49:23.000Z",
+              "updatedAt": "2026-07-28T02:49:23.000Z",
+              "uid": "35240-9e7d2543-ceba-4e8e-96c2-573568977092"
+            },
+            {
+              "id": "e8a52e07-1097-4c12-be5e-c3446a99c3a6",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"sound_effect_v1\",\n  \"promptText\": \"<string>\",\n  \"videoUri\": \"<string>\",\n  \"duration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sound_effect",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sound_effect"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:23.000Z",
+              "updatedAt": "2026-07-28T02:49:23.000Z",
+              "uid": "35240-e8a52e07-1097-4c12-be5e-c3446a99c3a6"
+            },
+            {
+              "id": "84bba554-b958-4edc-9ac7-dd1065253705",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"sound_effect_v1\",\n  \"promptText\": \"<string>\",\n  \"videoUri\": \"<string>\",\n  \"duration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sound_effect",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sound_effect"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:23.000Z",
+              "updatedAt": "2026-07-28T02:49:23.000Z",
+              "uid": "35240-84bba554-b958-4edc-9ac7-dd1065253705"
+            },
+            {
+              "id": "d1446bc8-873e-453f-afed-6b530b947493",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"sound_effect_v1\",\n  \"promptText\": \"<string>\",\n  \"videoUri\": \"<string>\",\n  \"duration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sound_effect",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sound_effect"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:23.000Z",
+              "updatedAt": "2026-07-28T02:49:23.000Z",
+              "uid": "35240-d1446bc8-873e-453f-afed-6b530b947493"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:23.000Z",
+          "updatedAt": "2026-07-28T02:49:23.000Z",
+          "uid": "35240-f64a7c6d-1ad1-4585-8832-269126803bae"
+        }
+      ],
+      "id": "05fec6e3-a2cc-4d84-8167-71e18b49655b",
+      "createdAt": "2026-07-28T02:49:23.000Z",
+      "updatedAt": "2026-07-28T02:49:23.000Z",
+      "uid": "35240-05fec6e3-a2cc-4d84-8167-71e18b49655b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

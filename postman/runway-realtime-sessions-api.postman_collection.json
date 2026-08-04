@@ -1,0 +1,272 @@
+{
+  "info": {
+    "_postman_id": "935dc8dc-873c-48d7-b3b4-98773c92aff4",
+    "name": "Runway Characters Avatars Realtime Sessions API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:21.000Z",
+    "updatedAt": "2026-07-28T02:49:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-935dc8dc-873c-48d7-b3b4-98773c92aff4"
+  },
+  "item": [
+    {
+      "name": "realtime_sessions",
+      "item": [
+        {
+          "name": "Create a new realtime session",
+          "id": "56660512-a703-48e9-8ab3-ca43d153581b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"gwm1_avatars\",\n  \"avatar\": {\n    \"type\": \"preset\",\n    \"presetId\": \"fashion-designer\"\n  },\n  \"maxSessionDurationSeconds\": \"<integer>\",\n  \"personality\": \"<string>\",\n  \"startScript\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/realtime_sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "realtime_sessions"
+              ]
+            },
+            "description": "Creates a new realtime WebRTC session connecting a user to an avatar for a live conversational interaction. The session returns WebRTC credentials (server URL, token, and room name) that can only be retrieved once. If the WebRTC connection fails after credentials are consumed, a new session must be created. Sessions have a maximum duration of 5 minutes."
+          },
+          "response": [
+            {
+              "id": "00fb3de9-d67e-4824-8d61-6b1e4bca579f",
+              "name": "Session created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gwm1_avatars\",\n  \"avatar\": {\n    \"type\": \"preset\",\n    \"presetId\": \"fashion-designer\"\n  },\n  \"maxSessionDurationSeconds\": \"<integer>\",\n  \"personality\": \"<string>\",\n  \"startScript\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/realtime_sessions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "realtime_sessions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"PENDING\",\n  \"serverUrl\": \"<uri>\",\n  \"token\": \"<string>\",\n  \"roomName\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:22.000Z",
+              "updatedAt": "2026-07-28T02:49:22.000Z",
+              "uid": "35240-00fb3de9-d67e-4824-8d61-6b1e4bca579f"
+            },
+            {
+              "id": "f8479fca-57ef-40bc-9d6f-bc4b1787a22f",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gwm1_avatars\",\n  \"avatar\": {\n    \"type\": \"preset\",\n    \"presetId\": \"fashion-designer\"\n  },\n  \"maxSessionDurationSeconds\": \"<integer>\",\n  \"personality\": \"<string>\",\n  \"startScript\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/realtime_sessions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "realtime_sessions"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:22.000Z",
+              "updatedAt": "2026-07-28T02:49:22.000Z",
+              "uid": "35240-f8479fca-57ef-40bc-9d6f-bc4b1787a22f"
+            },
+            {
+              "id": "aa61f57d-b0fd-4572-80c7-7b36edd6af6a",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gwm1_avatars\",\n  \"avatar\": {\n    \"type\": \"preset\",\n    \"presetId\": \"fashion-designer\"\n  },\n  \"maxSessionDurationSeconds\": \"<integer>\",\n  \"personality\": \"<string>\",\n  \"startScript\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/realtime_sessions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "realtime_sessions"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:22.000Z",
+              "updatedAt": "2026-07-28T02:49:22.000Z",
+              "uid": "35240-aa61f57d-b0fd-4572-80c7-7b36edd6af6a"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:22.000Z",
+          "updatedAt": "2026-07-28T02:49:22.000Z",
+          "uid": "35240-56660512-a703-48e9-8ab3-ca43d153581b"
+        }
+      ],
+      "id": "b4b6129e-fcdd-457d-872d-4cdfeaf38be4",
+      "createdAt": "2026-07-28T02:49:22.000Z",
+      "updatedAt": "2026-07-28T02:49:22.000Z",
+      "uid": "35240-b4b6129e-fcdd-457d-872d-4cdfeaf38be4"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "57643186-697b-4399-bc34-34e7694dfb88",
+    "name": "Runway Characters Avatars Text to Image API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:40.000Z",
+    "updatedAt": "2026-07-28T02:49:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-57643186-697b-4399-bc34-34e7694dfb88"
+  },
+  "item": [
+    {
+      "name": "text_to_image",
+      "item": [
+        {
+          "name": "Create text-to-image generation task",
+          "id": "a26392b7-86dd-47cd-b895-4f46270a56ce",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"gen4_image\",\n  \"promptText\": \"<string>\",\n  \"ratio\": \"1280:720\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/text_to_image",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "text_to_image"
+              ]
+            },
+            "description": "Starts a new asynchronous task to generate an image from a text prompt using the Gen-4 Image model. The prompt describes what should appear in the generated image. Returns a task ID that can be polled for completion."
+          },
+          "response": [
+            {
+              "id": "3c166461-50eb-416d-8509-f42a45f475ba",
+              "name": "Task created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4_image\",\n  \"promptText\": \"<string>\",\n  \"ratio\": \"1280:720\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/text_to_image",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "text_to_image"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\"\n}",
+              "createdAt": "2026-07-28T02:49:41.000Z",
+              "updatedAt": "2026-07-28T02:49:41.000Z",
+              "uid": "35240-3c166461-50eb-416d-8509-f42a45f475ba"
+            },
+            {
+              "id": "c549082b-a189-48e5-be0e-695508b58277",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4_image\",\n  \"promptText\": \"<string>\",\n  \"ratio\": \"1280:720\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/text_to_image",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "text_to_image"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:41.000Z",
+              "updatedAt": "2026-07-28T02:49:41.000Z",
+              "uid": "35240-c549082b-a189-48e5-be0e-695508b58277"
+            },
+            {
+              "id": "3033cc8e-ab5a-465e-8a36-dd4cc71229c8",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4_image\",\n  \"promptText\": \"<string>\",\n  \"ratio\": \"1280:720\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/text_to_image",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "text_to_image"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:41.000Z",
+              "updatedAt": "2026-07-28T02:49:41.000Z",
+              "uid": "35240-3033cc8e-ab5a-465e-8a36-dd4cc71229c8"
+            },
+            {
+              "id": "66c698a7-edb1-47a5-b120-8552293fcd94",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"gen4_image\",\n  \"promptText\": \"<string>\",\n  \"ratio\": \"1280:720\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/text_to_image",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "text_to_image"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:41.000Z",
+              "updatedAt": "2026-07-28T02:49:41.000Z",
+              "uid": "35240-66c698a7-edb1-47a5-b120-8552293fcd94"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:41.000Z",
+          "updatedAt": "2026-07-28T02:49:41.000Z",
+          "uid": "35240-a26392b7-86dd-47cd-b895-4f46270a56ce"
+        }
+      ],
+      "id": "9859fb87-9e6b-44f7-8614-d80357d69b77",
+      "createdAt": "2026-07-28T02:49:41.000Z",
+      "updatedAt": "2026-07-28T02:49:41.000Z",
+      "uid": "35240-9859fb87-9e6b-44f7-8614-d80357d69b77"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}

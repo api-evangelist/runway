@@ -1,0 +1,333 @@
+{
+  "info": {
+    "_postman_id": "ddb7d2fb-6ec7-406d-9dda-08ba5052c276",
+    "name": "Runway Characters Avatars Frame Interpolation API",
+    "description": "The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.\n\nContact Support:\n Name: Runway Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:49:19.000Z",
+    "updatedAt": "2026-07-28T02:49:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ddb7d2fb-6ec7-406d-9dda-08ba5052c276"
+  },
+  "item": [
+    {
+      "name": "frame_interpolation",
+      "item": [
+        {
+          "name": "Create frame interpolation task",
+          "id": "1e9ae6b3-97f1-4bc9-b23e-f7d3ae8b6bfe",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                "key": "X-Runway-Version",
+                "value": "2024-11-06"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"frame_interpolation_v1\",\n  \"videoUri\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/frame_interpolation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "frame_interpolation"
+              ]
+            },
+            "description": "Starts a new asynchronous task to interpolate between video frames, increasing the frame rate and smoothness of the output video. Returns a task ID that can be polled for completion."
+          },
+          "response": [
+            {
+              "id": "d1a2626e-0744-4d33-b791-c6136bb05ade",
+              "name": "Task created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"frame_interpolation_v1\",\n  \"videoUri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/frame_interpolation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "frame_interpolation"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\"\n}",
+              "createdAt": "2026-07-28T02:49:19.000Z",
+              "updatedAt": "2026-07-28T02:49:19.000Z",
+              "uid": "35240-d1a2626e-0744-4d33-b791-c6136bb05ade"
+            },
+            {
+              "id": "0decc2f7-a3fe-4188-bc3e-d9f0e6440264",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"frame_interpolation_v1\",\n  \"videoUri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/frame_interpolation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "frame_interpolation"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:19.000Z",
+              "updatedAt": "2026-07-28T02:49:19.000Z",
+              "uid": "35240-0decc2f7-a3fe-4188-bc3e-d9f0e6440264"
+            },
+            {
+              "id": "b9e3f788-6820-4880-b660-b7e962d1f971",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"frame_interpolation_v1\",\n  \"videoUri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/frame_interpolation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "frame_interpolation"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:19.000Z",
+              "updatedAt": "2026-07-28T02:49:19.000Z",
+              "uid": "35240-b9e3f788-6820-4880-b660-b7e962d1f971"
+            },
+            {
+              "id": "eca5967d-f586-4e5d-9f74-bb454a0c01e0",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) API version identifier. Must be set to the exact value 2024-11-06.",
+                    "key": "X-Runway-Version",
+                    "value": "2024-11-06"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"frame_interpolation_v1\",\n  \"videoUri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/frame_interpolation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "frame_interpolation"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:49:19.000Z",
+              "updatedAt": "2026-07-28T02:49:19.000Z",
+              "uid": "35240-eca5967d-f586-4e5d-9f74-bb454a0c01e0"
+            }
+          ],
+          "createdAt": "2026-07-28T02:49:19.000Z",
+          "updatedAt": "2026-07-28T02:49:19.000Z",
+          "uid": "35240-1e9ae6b3-97f1-4bc9-b23e-f7d3ae8b6bfe"
+        }
+      ],
+      "id": "947a3295-0253-45da-9ed6-e620532a8d95",
+      "createdAt": "2026-07-28T02:49:19.000Z",
+      "updatedAt": "2026-07-28T02:49:19.000Z",
+      "uid": "35240-947a3295-0253-45da-9ed6-e620532a8d95"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dev.runwayml.com/v1"
+    }
+  ]
+}
