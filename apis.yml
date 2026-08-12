@@ -341,6 +341,9 @@ apis:
   - type: AsyncAPI
     url: asyncapi/runway-characters-asyncapi.yml
 common:
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/runwayml/sdk-python/blob/main/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/runway/overview
   - type: AgenticAccess
