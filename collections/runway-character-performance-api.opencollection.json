@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Characters Avatars Character Performance API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Character Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create character performance (Act Two) task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/character_performance",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to control a character's facial expressions and body movements using a reference performance video. Uses the Act Two model to animate a character image or video based on a driving reference. Returns a task ID that can be polled for completion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

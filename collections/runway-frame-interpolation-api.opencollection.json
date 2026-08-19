@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Characters Avatars Frame Interpolation API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Frame Interpolation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create frame interpolation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/frame_interpolation",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to interpolate between video frames, increasing the frame rate and smoothness of the output video. Returns a task ID that can be polled for completion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

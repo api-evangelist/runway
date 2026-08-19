@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Characters Avatars Tasks API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve task status and output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dev.runwayml.com/v1/tasks/:id",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the task, returned when the task was created."
+              }
+            ]
+          },
+          "docs": "Retrieves the current status and output of an asynchronous image generation task by its unique identifier. Poll this endpoint until the task status indicates completion. When a task succeeds, the response includes output URLs linking to the generated image."
+        },
+        {
+          "info": {
+            "name": "Cancel or delete a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dev.runwayml.com/v1/tasks/:id",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the task, returned when the task was created."
+              }
+            ]
+          },
+          "docs": "Cancels a pending task or deletes a completed task by its unique identifier. This operation cannot be undone."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

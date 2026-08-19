@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Characters Avatars Realtime Sessions API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Realtime Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new realtime session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/realtime_sessions",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new realtime WebRTC session connecting a user to an avatar for a live conversational interaction. The session returns WebRTC credentials (server URL, token, and room name) that can only be retrieved once. If the WebRTC connection fails after credentials are consumed, a new session must be created. Sessions have a maximum duration of 5 minutes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

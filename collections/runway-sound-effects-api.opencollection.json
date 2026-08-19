@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Characters Avatars Sound Effects API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sound Effects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create sound effect generation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/sound_effect",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to generate sound effects for a video using AI. Returns a task ID that can be polled for completion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

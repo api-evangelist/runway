@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Characters Avatars API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Avatars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new avatar",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/avatars",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new persistent avatar persona with a defined appearance, voice, and personality. The avatar is created from a single reference image and can be used across multiple sessions. Supports photorealistic or animated styles, human or non-human appearances."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

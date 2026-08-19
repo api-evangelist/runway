@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Characters Avatars Documents API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a knowledge document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/documents",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a domain-specific knowledge document that can be attached to avatars. Documents provide additional context that avatars can reference during conversations to give accurate, contextual responses. Each avatar supports up to 50,000 tokens of knowledge across all attached documents."
+        },
+        {
+          "info": {
+            "name": "Delete a knowledge document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dev.runwayml.com/v1/documents/:id",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a previously uploaded knowledge document by its unique identifier. This removes the document from any avatars it was attached to."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

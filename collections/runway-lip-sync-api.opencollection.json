@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway Characters Avatars Lip Sync API",
+    "version": "2024-11-06"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lip Sync",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create lip sync generation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dev.runwayml.com/v1/lip_sync",
+            "headers": [
+              {
+                "name": "X-Runway-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new asynchronous task to create a generative video where a selected face speaks lines from audio clips or AI-generated voices. Supports 28+ languages using the eleven_multilingual_v2 model. Returns a task ID that can be polled for completion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
