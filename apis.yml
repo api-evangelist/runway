@@ -25,6 +25,16 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/runway.png
 tags:
   - Video Generation
+  - Image-Generation
+  - Artificial Intelligence
+  - Machine-Learning
+  - Generative AI
+  - Avatars
+  - Characters
+  - WebRTC
+  - Creative Tools
+tags_raw:
+  - Video Generation
   - Image Generation
   - Artificial Intelligence
   - Machine Learning
@@ -162,6 +172,8 @@ apis:
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
+  - Image-to-Video
+  tags_raw:
   - Image to Video
   properties:
   - type: OpenAPI
@@ -238,6 +250,8 @@ apis:
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -256,6 +270,8 @@ apis:
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
+  - Text-to-Image
+  tags_raw:
   - Text to Image
   properties:
   - type: OpenAPI
@@ -274,6 +290,8 @@ apis:
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
+  - Text-to-Video
+  tags_raw:
   - Text to Video
   properties:
   - type: OpenAPI
@@ -310,6 +328,8 @@ apis:
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
+  - Video-to-Video
+  tags_raw:
   - Video to Video
   properties:
   - type: OpenAPI
