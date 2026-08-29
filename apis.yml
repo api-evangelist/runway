@@ -7,6 +7,20 @@ description: >-
   Veo 3.1, Act Two, and GWM-1 (General World Model). The API uses asynchronous task processing with Bearer token
   authentication.
 type: Index
+deliveryModel:
+  model: open-core
+  license: Apache-2.0
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -361,6 +375,14 @@ apis:
   - type: AsyncAPI
     url: asyncapi/runway-characters-asyncapi.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/runwayml/sdk-python/issues
+  - type: Releases
+    url: https://github.com/runwayml/sdk-python/releases
+  - type: SecurityPolicy
+    url: https://github.com/runwayml/sdk-python/blob/main/SECURITY.md
+  - type: ContributionGuide
+    url: https://github.com/runwayml/sdk-python/blob/main/CONTRIBUTING.md
   - type: License
     name: Apache-2.0
     url: https://github.com/runwayml/sdk-python/blob/main/LICENSE
