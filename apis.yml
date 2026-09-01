@@ -186,7 +186,7 @@ apis:
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
-  - Image to Video
+  - Image-to-Video
   tags_raw:
   - Image to Video
   properties:
@@ -342,7 +342,7 @@ apis:
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
-  - Video to Video
+  - Video-to-Video
   tags_raw:
   - Video to Video
   properties:
