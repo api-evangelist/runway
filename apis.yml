@@ -1,11 +1,6 @@
 aid: runway
 name: Runway
-description: >-
-  Runway is an applied AI research company that builds generative AI tools for creative professionals. Their developer
-  platform provides APIs for video generation, image generation, real-time conversational avatar experiences, media
-  uploads, and audio synthesis powered by advanced generative models including Gen-4, Gen-4 Turbo, Gen-4.5, Gen-4 Aleph,
-  Veo 3.1, Act Two, and GWM-1 (General World Model). The API uses asynchronous task processing with Bearer token
-  authentication.
+description: Runway is an applied AI research company that builds generative AI tools for creative professionals. Their developer platform provides APIs for video generation, image generation, real-time conversational avatar experiences, media uploads, and audio synthesis powered by advanced generative models including Gen-4, Gen-4 Turbo, Gen-4.5, Gen-4 Aleph, Veo 3.1, Act Two, and GWM-1 (General World Model). The API uses asynchronous task processing with Bearer token authentication.
 type: Index
 deliveryModel:
   model: open-core
@@ -33,32 +28,34 @@ accessModel:
   - plans
   - authentication
   - security
-  - {url: 'https://runwayml.com/', status: 308, note: 'declared website redirects to https://runway.com/ — a different registrable domain (runwayml.com -> runway.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
+  - url: https://runwayml.com/
+    status: 308
+    note: declared website redirects to https://runway.com/ — a different registrable domain (runwayml.com -> runway.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)
   generated: '2026-09-03'
   method: derived
 position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/runway.png
 tags:
-  - Video Generation
-  - Image-Generation
-  - Artificial Intelligence
-  - Machine-Learning
-  - Generative AI
-  - Avatars
-  - Characters
-  - WebRTC
-  - Creative Tools
+- Video Generation
+- Image-Generation
+- Artificial Intelligence
+- Machine-Learning
+- Generative AI
+- Avatars
+- Characters
+- WebRTC
+- Creative Tools
 tags_raw:
-  - Video Generation
-  - Image Generation
-  - Artificial Intelligence
-  - Machine Learning
-  - Generative AI
-  - Avatars
-  - Characters
-  - WebRTC
-  - Creative Tools
+- Video Generation
+- Image Generation
+- Artificial Intelligence
+- Machine Learning
+- Generative AI
+- Avatars
+- Characters
+- WebRTC
+- Creative Tools
 url: https://raw.githubusercontent.com/api-evangelist/runway/refs/heads/main/apis.yml
 created: '2025-03-01'
 modified: '2026-05-19'
@@ -66,11 +63,7 @@ specificationVersion: '0.23'
 apis:
 - aid: runway:python-sdk
   name: Runway Python SDK
-  description: >-
-    The Runway Python SDK provides a convenient Python library for interacting with the Runway API. Supports
-    Python 3.8+ with type annotations compatible with MyPy. Includes automatic retries, best-practice
-    error handling, and type safety to simplify integration of Runway's video and image generation capabilities
-    into Python applications.
+  description: The Runway Python SDK provides a convenient Python library for interacting with the Runway API. Supports Python 3.8+ with type annotations compatible with MyPy. Includes automatic retries, best-practice error handling, and type safety to simplify integration of Runway's video and image generation capabilities into Python applications.
   humanURL: https://docs.dev.runwayml.com/api-details/sdks/
   tags:
   - Python
@@ -85,10 +78,7 @@ apis:
     url: https://github.com/runwayml/sdk-python
 - aid: runway:nodejs-sdk
   name: Runway Node.js SDK
-  description: >-
-    The Runway Node.js SDK provides a JavaScript and TypeScript library for integrating with the Runway
-    API. Supports Node.js 18+ with TypeScript bindings, automatic retries, and best-practice error handling.
-    Install via npm, yarn, or pnpm.
+  description: The Runway Node.js SDK provides a JavaScript and TypeScript library for integrating with the Runway API. Supports Node.js 18+ with TypeScript bindings, automatic retries, and best-practice error handling. Install via npm, yarn, or pnpm.
   humanURL: https://docs.dev.runwayml.com/api-details/sdks/
   tags:
   - Node.js
@@ -104,9 +94,7 @@ apis:
     url: https://github.com/runwayml/sdk-node
 - aid: runway:runway-avatars-api
   name: Runway Avatars API
-  description: >-
-    Create and manage persistent avatar personas with defined appearance, voice, and personality. Avatars
-    can be created from a single reference image in any visual style.
+  description: Create and manage persistent avatar personas with defined appearance, voice, and personality. Avatars can be created from a single reference image in any visual style.
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
@@ -124,9 +112,7 @@ apis:
     url: asyncapi/runway-characters-asyncapi.yml
 - aid: runway:runway-character-performance-api
   name: Runway Character Performance API
-  description: >-
-    Control a character's facial expressions and body movements using a reference performance video with
-    the Act Two model.
+  description: Control a character's facial expressions and body movements using a reference performance video with the Act Two model.
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
@@ -144,9 +130,7 @@ apis:
     url: asyncapi/runway-characters-asyncapi.yml
 - aid: runway:runway-documents-api
   name: Runway Documents API
-  description: >-
-    Upload and manage domain-specific knowledge documents that avatars can reference during conversations
-    to provide accurate, contextual responses. Each avatar supports up to 50,000 tokens of knowledge.
+  description: Upload and manage domain-specific knowledge documents that avatars can reference during conversations to provide accurate, contextual responses. Each avatar supports up to 50,000 tokens of knowledge.
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
@@ -182,9 +166,7 @@ apis:
     url: asyncapi/runway-characters-asyncapi.yml
 - aid: runway:runway-image-to-video-api
   name: Runway Image to Video API
-  description: >-
-    Generate videos from input images with optional text prompts using Gen-4, Gen-4 Turbo, Gen-4.5, or
-    Aleph models.
+  description: Generate videos from input images with optional text prompts using Gen-4, Gen-4 Turbo, Gen-4.5, or Aleph models.
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
@@ -204,9 +186,7 @@ apis:
     url: asyncapi/runway-characters-asyncapi.yml
 - aid: runway:runway-lip-sync-api
   name: Runway Lip Sync API
-  description: >-
-    Create generative videos where a selected face speaks lines from audio clips or AI-generated voices,
-    supporting 28+ languages.
+  description: Create generative videos where a selected face speaks lines from audio clips or AI-generated voices, supporting 28+ languages.
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
@@ -224,9 +204,7 @@ apis:
     url: asyncapi/runway-characters-asyncapi.yml
 - aid: runway:runway-realtime-sessions-api
   name: Runway Realtime Sessions API
-  description: >-
-    Create live WebRTC sessions connecting users to avatars for real-time conversational interactions.
-    Each session has a maximum duration of 5 minutes.
+  description: Create live WebRTC sessions connecting users to avatars for real-time conversational interactions. Each session has a maximum duration of 5 minutes.
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
@@ -376,81 +354,213 @@ apis:
     url: https://docs.dev.runwayml.com/characters/
   - type: AsyncAPI
     url: asyncapi/runway-characters-asyncapi.yml
-common:
-  - type: IssueTracker
-    url: https://github.com/runwayml/sdk-python/issues
-  - type: Releases
-    url: https://github.com/runwayml/sdk-python/releases
-  - type: SecurityPolicy
-    url: https://github.com/runwayml/sdk-python/blob/main/SECURITY.md
-  - type: ContributionGuide
-    url: https://github.com/runwayml/sdk-python/blob/main/CONTRIBUTING.md
-  - type: License
-    name: Apache-2.0
-    url: https://github.com/runwayml/sdk-python/blob/main/LICENSE
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/runway/overview
-  - type: AgenticAccess
-    url: agentic-access/runway-agentic-access.yml
-  - type: DomainSecurity
-    url: security/runway-domain-security.yml
-  - type: Authentication
-    url: authentication/runway-authentication.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/runwayml
-  - type: Portal
-    url: https://docs.dev.runwayml.com/
+- aid: runway:runwayml-image-to-video-api
+  name: Runway Image-to-Video API
+  description: Generate video from an image and prompt (Gen-4 Turbo, Gen-4.5).
+  humanURL: https://docs.dev.runwayml.com/api-details/sdks/
+  baseURL: https://api.dev.runwayml.com/v1
+  tags:
+  - Image-to-Video
+  properties:
+  - type: OpenAPI
+    url: openapi/runwayml-image-to-video-api-openapi.yml
   - type: Documentation
-    url: https://docs.dev.runwayml.com/api/
-  - type: Website
-    url: https://runwayml.com/
-  - type: DeveloperPortal
-    url: https://dev.runwayml.com/
-  - type: PrivacyPolicy
-    url: https://runwayml.com/privacy-policy
-  - type: TermsOfService
-    url: https://runwayml.com/terms-of-use
-  - type: Blog
-    url: https://runwayml.com/blog
-  - type: Login
-    url: https://app.runwayml.com/
-  - type: GitHubOrganization
-    url: https://github.com/runwayml
-  - type: ChangeLog
-    url: https://docs.dev.runwayml.com/api-details/api_changelog/
-  - type: Vocabulary
-    url: vocabulary/runway-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/runway-context.jsonld
-  - type: Features
-    data:
-      - 'Free: 125 one-time credits with Gen-4 Turbo image'
-      - 'Standard at $12/mo annual: 625 credits, all video models'
-      - 'Pro at $28/mo: 2,250 credits, custom voices'
-      - 'Unlimited at $76/mo: 2,250 credits + unlimited Explore Mode'
-      - 'Enterprise: SSO, custom org spaces, Workspace Analytics'
-      - Gen-4.5, Gen-4, Gen-4 Turbo video generation
-      - Image generation (Gen-4, Gemini 3 Pro/2.5)
-      - Text-to-Speech with custom voices
-      - Lip Sync
-      - Upscaling and watermark removal
-      - REST API for video/image generation
-      - Webhooks for completion notification
-      - OAuth 2.0 + API tokens
-      - Asset storage (5 GB Free, 100/500 GB paid)
-      - Video editor with unlimited projects on paid
-      - Enterprise integrations with internal tools
-    sources:
-      - https://runwayml.com/pricing
-    updated: '2026-05-04'
-  - name: MCP Server
-    url: https://github.com/runwayml/runway-api-mcp-server
-    type: MCPServer
-  - name: Agent Skills
-    url: https://github.com/runwayml/runway-characters-meeting-skill
-    type: AgentSkills
-  - type: LlmsText
-    url: https://docs.dev.runwayml.com/llms.txt
+    url: https://docs.dev.runwayml.com/guides/using-the-api/
+  - type: APIReference
+    url: https://docs.dev.runwayml.com/
+  - type: PostmanCollection
+    url: collections/runwayml.postman_collection.json
+  - type: OpenCollection
+    url: collections/runwayml.opencollection.json
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/characters/integration/
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/usage/tiers/
+- aid: runway:runwayml-organization-api
+  name: Runway Organization API
+  description: Usage tier and credit balance for the API organization.
+  humanURL: https://docs.dev.runwayml.com/api-details/sdks/
+  baseURL: https://api.dev.runwayml.com/v1
+  tags:
+  - Organization
+  properties:
+  - type: OpenAPI
+    url: openapi/runwayml-organization-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/guides/using-the-api/
+  - type: APIReference
+    url: https://docs.dev.runwayml.com/
+  - type: PostmanCollection
+    url: collections/runwayml.postman_collection.json
+  - type: OpenCollection
+    url: collections/runwayml.opencollection.json
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/characters/integration/
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/usage/tiers/
+- aid: runway:runwayml-text-to-image-api
+  name: Runway Text-to-Image API
+  description: Generate images from a prompt (Gen-4 Image, Gen-4 Image Turbo).
+  humanURL: https://docs.dev.runwayml.com/api-details/sdks/
+  baseURL: https://api.dev.runwayml.com/v1
+  tags:
+  - Text-to-Image
+  properties:
+  - type: OpenAPI
+    url: openapi/runwayml-text-to-image-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/guides/using-the-api/
+  - type: APIReference
+    url: https://docs.dev.runwayml.com/
+  - type: PostmanCollection
+    url: collections/runwayml.postman_collection.json
+  - type: OpenCollection
+    url: collections/runwayml.opencollection.json
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/characters/integration/
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/usage/tiers/
+- aid: runway:runwayml-text-to-speech-api
+  name: Runway Text-to-Speech API
+  description: Synthesize speech audio from text.
+  humanURL: https://docs.dev.runwayml.com/api-details/sdks/
+  baseURL: https://api.dev.runwayml.com/v1
+  tags:
+  - Text-to-Speech
+  properties:
+  - type: OpenAPI
+    url: openapi/runwayml-text-to-speech-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/guides/using-the-api/
+  - type: APIReference
+    url: https://docs.dev.runwayml.com/
+  - type: PostmanCollection
+    url: collections/runwayml.postman_collection.json
+  - type: OpenCollection
+    url: collections/runwayml.opencollection.json
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/characters/integration/
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/usage/tiers/
+- aid: runway:runwayml-upscale-api
+  name: Runway Upscale API
+  description: Upscale a video to higher resolution.
+  humanURL: https://docs.dev.runwayml.com/api-details/sdks/
+  baseURL: https://api.dev.runwayml.com/v1
+  tags:
+  - Upscale
+  properties:
+  - type: OpenAPI
+    url: openapi/runwayml-upscale-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/guides/using-the-api/
+  - type: APIReference
+    url: https://docs.dev.runwayml.com/
+  - type: PostmanCollection
+    url: collections/runwayml.postman_collection.json
+  - type: OpenCollection
+    url: collections/runwayml.opencollection.json
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/characters/integration/
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/usage/tiers/
+- aid: runway:runwayml-video-to-video-api
+  name: Runway Video-to-Video API
+  description: Edit / restyle an existing video (Aleph).
+  humanURL: https://docs.dev.runwayml.com/api-details/sdks/
+  baseURL: https://api.dev.runwayml.com/v1
+  tags:
+  - Video-to-Video
+  properties:
+  - type: OpenAPI
+    url: openapi/runwayml-video-to-video-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/guides/using-the-api/
+  - type: APIReference
+    url: https://docs.dev.runwayml.com/
+  - type: PostmanCollection
+    url: collections/runwayml.postman_collection.json
+  - type: OpenCollection
+    url: collections/runwayml.opencollection.json
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/characters/integration/
+  - type: Documentation
+    url: https://docs.dev.runwayml.com/usage/tiers/
+common:
+- type: IssueTracker
+  url: https://github.com/runwayml/sdk-python/issues
+- type: Releases
+  url: https://github.com/runwayml/sdk-python/releases
+- type: SecurityPolicy
+  url: https://github.com/runwayml/sdk-python/blob/main/SECURITY.md
+- type: ContributionGuide
+  url: https://github.com/runwayml/sdk-python/blob/main/CONTRIBUTING.md
+- type: License
+  name: Apache-2.0
+  url: https://github.com/runwayml/sdk-python/blob/main/LICENSE
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/runway/overview
+- type: AgenticAccess
+  url: agentic-access/runway-agentic-access.yml
+- type: DomainSecurity
+  url: security/runway-domain-security.yml
+- type: Authentication
+  url: authentication/runway-authentication.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/runwayml
+- type: Portal
+  url: https://docs.dev.runwayml.com/
+- type: Documentation
+  url: https://docs.dev.runwayml.com/api/
+- type: Website
+  url: https://runwayml.com/
+- type: DeveloperPortal
+  url: https://dev.runwayml.com/
+- type: PrivacyPolicy
+  url: https://runwayml.com/privacy-policy
+- type: TermsOfService
+  url: https://runwayml.com/terms-of-use
+- type: Blog
+  url: https://runwayml.com/blog
+- type: Login
+  url: https://app.runwayml.com/
+- type: GitHubOrganization
+  url: https://github.com/runwayml
+- type: ChangeLog
+  url: https://docs.dev.runwayml.com/api-details/api_changelog/
+- type: Vocabulary
+  url: vocabulary/runway-vocabulary.yml
+- type: JSONLD
+  url: json-ld/runway-context.jsonld
+- type: Features
+  data:
+  - 'Free: 125 one-time credits with Gen-4 Turbo image'
+  - 'Standard at $12/mo annual: 625 credits, all video models'
+  - 'Pro at $28/mo: 2,250 credits, custom voices'
+  - 'Unlimited at $76/mo: 2,250 credits + unlimited Explore Mode'
+  - 'Enterprise: SSO, custom org spaces, Workspace Analytics'
+  - Gen-4.5, Gen-4, Gen-4 Turbo video generation
+  - Image generation (Gen-4, Gemini 3 Pro/2.5)
+  - Text-to-Speech with custom voices
+  - Lip Sync
+  - Upscaling and watermark removal
+  - REST API for video/image generation
+  - Webhooks for completion notification
+  - OAuth 2.0 + API tokens
+  - Asset storage (5 GB Free, 100/500 GB paid)
+  - Video editor with unlimited projects on paid
+  - Enterprise integrations with internal tools
+  sources:
+  - https://runwayml.com/pricing
+  updated: '2026-05-04'
+- name: MCP Server
+  url: https://github.com/runwayml/runway-api-mcp-server
+  type: MCPServer
+- name: Agent Skills
+  url: https://github.com/runwayml/runway-characters-meeting-skill
+  type: AgentSkills
+- type: LlmsText
+  url: https://docs.dev.runwayml.com/llms.txt
 maintainers:
-  - FN: API Evangelist
-    email: info@apievangelist.com
+- FN: API Evangelist
+  email: info@apievangelist.com
