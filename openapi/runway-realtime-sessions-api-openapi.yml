@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Runway Characters Avatars Realtime Sessions API
-  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.
+  title: Runway Characters Realtime Sessions API
+  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model.
   version: '2024-11-06'
   contact:
     name: Runway Support
@@ -52,6 +52,54 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
+    PresetAvatarConfig:
+      type: object
+      required:
+      - type
+      - presetId
+      properties:
+        type:
+          type: string
+          description: Indicates this is a preset avatar configuration.
+          enum:
+          - preset
+        presetId:
+          type: string
+          description: The identifier of a preset avatar. Available presets include game-character, music-superstar, game-character-man, cat-character, influencer, tennis-coach, human-resource, fashion-designer, and cooking-teacher.
+          enum:
+          - game-character
+          - music-superstar
+          - game-character-man
+          - cat-character
+          - influencer
+          - tennis-coach
+          - human-resource
+          - fashion-designer
+          - cooking-teacher
+    CustomAvatarConfig:
+      type: object
+      required:
+      - type
+      - avatarId
+      properties:
+        type:
+          type: string
+          description: Indicates this is a custom avatar configuration.
+          enum:
+          - custom
+        avatarId:
+          type: string
+          format: uuid
+          description: The unique identifier of a custom avatar created via the avatars endpoint.
     CreateRealtimeSessionRequest:
       type: object
       required:
@@ -103,54 +151,6 @@ components:
         roomName:
           type: string
           description: The name of the WebRTC room to join.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
-    PresetAvatarConfig:
-      type: object
-      required:
-      - type
-      - presetId
-      properties:
-        type:
-          type: string
-          description: Indicates this is a preset avatar configuration.
-          enum:
-          - preset
-        presetId:
-          type: string
-          description: The identifier of a preset avatar. Available presets include game-character, music-superstar, game-character-man, cat-character, influencer, tennis-coach, human-resource, fashion-designer, and cooking-teacher.
-          enum:
-          - game-character
-          - music-superstar
-          - game-character-man
-          - cat-character
-          - influencer
-          - tennis-coach
-          - human-resource
-          - fashion-designer
-          - cooking-teacher
-    CustomAvatarConfig:
-      type: object
-      required:
-      - type
-      - avatarId
-      properties:
-        type:
-          type: string
-          description: Indicates this is a custom avatar configuration.
-          enum:
-          - custom
-        avatarId:
-          type: string
-          format: uuid
-          description: The unique identifier of a custom avatar created via the avatars endpoint.
   parameters:
     RunwayVersion:
       name: X-Runway-Version

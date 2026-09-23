@@ -1,0 +1,1 @@
+{"resource":"https://mcp.runwayml.com/mcp","resource_name":"Runway","authorization_servers":["https://mcp.runwayml.com"],"bearer_methods_supported":["header"],"scopes_supported":["openid","api:read_write"],"resource_documentation":"https://mcp.runwayml.com/"}

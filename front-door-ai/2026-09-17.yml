@@ -1,0 +1,29 @@
+# Front Door AI Index — runway — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: runway
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: runwayml.com
+  final_host: runway.com
+  ownership: own
+  owner: runway
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 11
+  host_score: 11
+  density: 18.74
+  words: 587
+  tiers:
+    agentic: 3
+    core: 7
+    model: 1
+  ambiguous: 9
+  top_terms:
+    intelligence: 9
+    AI: 7
+    inference: 2
+    ChatGPT: 1
+    prompts: 1

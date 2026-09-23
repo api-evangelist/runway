@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Runway Characters Avatars Documents API
-  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model. Characters are fully custom conversational video agents that can be created from a single image with no fine-tuning required, supporting photorealistic or animated styles, human or non-human appearances. The API manages avatars, real-time sessions via WebRTC, and knowledge documents that avatars can reference during conversations. Sessions have a maximum duration of 5 minutes.
+  title: Runway Characters Documents API
+  description: The Runway Characters API enables developers to build real-time conversational avatars powered by GWM-1, Runway's General World Model.
   version: '2024-11-06'
   contact:
     name: Runway Support
@@ -97,6 +97,15 @@ components:
           type: string
           format: date-time
           description: The timestamp when the document was uploaded.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
     CreateDocumentRequest:
       type: object
       required:
@@ -109,15 +118,6 @@ components:
         content:
           type: string
           description: The text content of the knowledge document that avatars can reference during conversations. Each avatar supports up to 50,000 tokens of knowledge across all attached documents.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
   parameters:
     RunwayVersion:
       name: X-Runway-Version
