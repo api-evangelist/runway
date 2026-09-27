@@ -73,24 +73,6 @@ paths:
     - url: https://api.dev.runwayml.com/v1
       description: Production Server
 components:
-  parameters:
-    RunwayVersion:
-      name: X-Runway-Version
-      in: header
-      required: true
-      description: API version identifier. Must be set to the exact value 2024-11-06.
-      schema:
-        type: string
-        enum:
-        - '2024-11-06'
-    TaskId:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the task, returned when the task was created.
-      schema:
-        type: string
-        format: uuid
   schemas:
     ErrorResponse:
       type: object
@@ -159,6 +141,24 @@ components:
         failure:
           type: string
           description: A description of the failure reason. Only present when the task status is FAILED.
+  parameters:
+    TaskId:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the task, returned when the task was created.
+      schema:
+        type: string
+        format: uuid
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+        - '2024-11-06'
   securitySchemes:
     bearerAuth:
       type: http

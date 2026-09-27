@@ -38,14 +38,15 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/runway.png
 tags:
 - Video Generation
-- Image-Generation
+- Image Generation
 - Artificial Intelligence
-- Machine-Learning
+- Machine Learning
 - Generative AI
 - Avatars
 - Characters
 - WebRTC
 - Creative Tools
+- Real-Time
 tags_raw:
 - Video Generation
 - Image Generation
@@ -56,6 +57,9 @@ tags_raw:
 - Characters
 - WebRTC
 - Creative Tools
+- Image-Generation
+- Machine-Learning
+- Real-Time
 url: https://raw.githubusercontent.com/api-evangelist/runway/refs/heads/main/apis.yml
 created: '2025-03-01'
 modified: '2026-05-19'
@@ -70,6 +74,12 @@ apis:
     into Python applications.
   humanURL: https://docs.dev.runwayml.com/api-details/sdks/
   tags:
+  - Python
+  - SDK
+  - Library
+  - Artificial Intelligence
+  - Video Generation
+  tags_raw:
   - Python
   - SDK
   - Libraries
@@ -88,6 +98,13 @@ apis:
     Install via npm, yarn, or pnpm.
   humanURL: https://docs.dev.runwayml.com/api-details/sdks/
   tags:
+  - Node.js
+  - JavaScript
+  - TypeScript
+  - SDK
+  - Library
+  - Video Generation
+  tags_raw:
   - Node.js
   - JavaScript
   - TypeScript
