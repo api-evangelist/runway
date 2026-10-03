@@ -92,18 +92,6 @@ components:
         code:
           type: string
           description: A machine-readable error code identifying the type of error.
-    CreateDocumentRequest:
-      type: object
-      required:
-      - name
-      - content
-      properties:
-        name:
-          type: string
-          description: A human-readable name for the knowledge document.
-        content:
-          type: string
-          description: The text content of the knowledge document that avatars can reference during conversations. Each avatar supports up to 50,000 tokens of knowledge across all attached documents.
     Document:
       type: object
       properties:
@@ -118,6 +106,18 @@ components:
           type: string
           format: date-time
           description: The timestamp when the document was uploaded.
+    CreateDocumentRequest:
+      type: object
+      required:
+      - name
+      - content
+      properties:
+        name:
+          type: string
+          description: A human-readable name for the knowledge document.
+        content:
+          type: string
+          description: The text content of the knowledge document that avatars can reference during conversations. Each avatar supports up to 50,000 tokens of knowledge across all attached documents.
   parameters:
     RunwayVersion:
       name: X-Runway-Version

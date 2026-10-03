@@ -32,9 +32,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API secret.
   schemas:
     Organization:
       type: object
@@ -45,6 +42,9 @@ components:
         tier:
           type: object
           description: Usage tier metadata, including per-model concurrency limits.
+  responses:
+    Unauthorized:
+      description: Missing or invalid API secret.
   securitySchemes:
     bearerAuth:
       type: http

@@ -142,14 +142,6 @@ components:
           type: string
           description: A description of the failure reason. Only present when the task status is FAILED.
   parameters:
-    TaskId:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the task, returned when the task was created.
-      schema:
-        type: string
-        format: uuid
     RunwayVersion:
       name: X-Runway-Version
       in: header
@@ -159,6 +151,14 @@ components:
         type: string
         enum:
         - '2024-11-06'
+    TaskId:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the task, returned when the task was created.
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

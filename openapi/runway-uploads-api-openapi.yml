@@ -52,6 +52,15 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
     UploadResponse:
       type: object
       properties:
@@ -67,15 +76,6 @@ components:
           description: A dictionary of form fields to include in the multipart POST request when uploading to the uploadUrl.
           additionalProperties:
             type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
     UploadRequest:
       type: object
       required:

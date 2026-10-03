@@ -40,18 +40,7 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
-  responses:
-    RateLimited:
-      description: Too many requests - the account rate or concurrency limit was exceeded.
-    Unauthorized:
-      description: Missing or invalid API secret.
   schemas:
-    TaskCreated:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The task id to poll on GET /tasks/{id}.
     TextToSpeechInput:
       type: object
       required:
@@ -67,6 +56,17 @@ components:
         voice:
           type: string
           description: Voice id.
+    TaskCreated:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The task id to poll on GET /tasks/{id}.
+  responses:
+    RateLimited:
+      description: Too many requests - the account rate or concurrency limit was exceeded.
+    Unauthorized:
+      description: Missing or invalid API secret.
   securitySchemes:
     bearerAuth:
       type: http

@@ -67,13 +67,6 @@ components:
         code:
           type: string
           description: A machine-readable error code identifying the type of error.
-    TaskCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier for the created task. Use this ID to poll the task status endpoint.
     CharacterPerformanceRequest:
       type: object
       required:
@@ -128,6 +121,13 @@ components:
           - 720:1280
           - 832:1104
           - 960:960
+    TaskCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the created task. Use this ID to poll the task status endpoint.
   parameters:
     RunwayVersion:
       name: X-Runway-Version

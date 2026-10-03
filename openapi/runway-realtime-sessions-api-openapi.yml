@@ -52,6 +52,31 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    RealtimeSession:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the session.
+        status:
+          type: string
+          description: The current status of the session.
+          enum:
+          - PENDING
+          - READY
+          - ACTIVE
+          - ENDED
+        serverUrl:
+          type: string
+          format: uri
+          description: The WebRTC server URL to connect to for this session.
+        token:
+          type: string
+          description: The authentication token for the WebRTC connection. Can only be retrieved once.
+        roomName:
+          type: string
+          description: The name of the WebRTC room to join.
     CreateRealtimeSessionRequest:
       type: object
       required:
@@ -93,6 +118,15 @@ components:
           type: string
           format: uuid
           description: The unique identifier of a custom avatar created via the avatars endpoint.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
     PresetAvatarConfig:
       type: object
       required:
@@ -117,40 +151,6 @@ components:
           - human-resource
           - fashion-designer
           - cooking-teacher
-    RealtimeSession:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier of the session.
-        status:
-          type: string
-          description: The current status of the session.
-          enum:
-          - PENDING
-          - READY
-          - ACTIVE
-          - ENDED
-        serverUrl:
-          type: string
-          format: uri
-          description: The WebRTC server URL to connect to for this session.
-        token:
-          type: string
-          description: The authentication token for the WebRTC connection. Can only be retrieved once.
-        roomName:
-          type: string
-          description: The name of the WebRTC room to join.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
   parameters:
     RunwayVersion:
       name: X-Runway-Version
