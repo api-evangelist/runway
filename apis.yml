@@ -435,6 +435,9 @@ apis:
   - type: Documentation
     url: https://docs.dev.runwayml.com/usage/tiers/
 common:
+- type: CapabilityMap
+  url: capabilities/runway-capability-edges.yml
+  name: Runway Business Capability Map
 - type: IssueTracker
   url: https://github.com/runwayml/sdk-python/issues
 - type: Releases

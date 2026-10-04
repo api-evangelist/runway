@@ -1,0 +1,25 @@
+slug: runway
+provider: Runway
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Organization
+  spec_file: runway-organization-api-openapi.yml
+  capability_id: BC-4270.50
+  capability_id_l1: BC-4270
+  capability_name: API Consumption Governance
+  confidence: 0.7
+  evidence: GET /organization  getOrganization  Get organization usage and credit balance
+  reason: 'Single operation returns API usage and credit balance for the developer''s organisation — consumption
+    analytics and quota/credit visibility against the commercial tier, which is API Consumption Governance
+    on this developer platform. Moderate confidence: could alternatively be read as billing/usage metering.'
