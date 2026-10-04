@@ -83,15 +83,18 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
+    CreateDocumentRequest:
       type: object
+      required:
+      - name
+      - content
       properties:
-        error:
+        name:
           type: string
-          description: A human-readable error message describing what went wrong.
-        code:
+          description: A human-readable name for the knowledge document.
+        content:
           type: string
-          description: A machine-readable error code identifying the type of error.
+          description: The text content of the knowledge document that avatars can reference during conversations. Each avatar supports up to 50,000 tokens of knowledge across all attached documents.
     Document:
       type: object
       properties:
@@ -106,18 +109,15 @@ components:
           type: string
           format: date-time
           description: The timestamp when the document was uploaded.
-    CreateDocumentRequest:
+    ErrorResponse:
       type: object
-      required:
-      - name
-      - content
       properties:
-        name:
+        error:
           type: string
-          description: A human-readable name for the knowledge document.
-        content:
+          description: A human-readable error message describing what went wrong.
+        code:
           type: string
-          description: The text content of the knowledge document that avatars can reference during conversations. Each avatar supports up to 50,000 tokens of knowledge across all attached documents.
+          description: A machine-readable error code identifying the type of error.
   parameters:
     RunwayVersion:
       name: X-Runway-Version

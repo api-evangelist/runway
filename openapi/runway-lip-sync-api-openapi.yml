@@ -58,15 +58,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
     TaskCreatedResponse:
       type: object
       properties:
@@ -93,6 +84,15 @@ components:
         audio:
           type: string
           description: An HTTPS URL or runway:// URI pointing to the audio file to sync with the face. Supports 28+ languages via eleven_multilingual_v2.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
   parameters:
     RunwayVersion:
       name: X-Runway-Version

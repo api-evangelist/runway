@@ -52,29 +52,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
-    Avatar:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier of the created avatar.
-        name:
-          type: string
-          description: The name of the avatar.
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp when the avatar was created.
     CreateAvatarRequest:
       type: object
       required:
@@ -118,6 +95,29 @@ components:
           items:
             type: string
             format: uuid
+    Avatar:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the created avatar.
+        name:
+          type: string
+          description: The name of the avatar.
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the avatar was created.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
   parameters:
     RunwayVersion:
       name: X-Runway-Version

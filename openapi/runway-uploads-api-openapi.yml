@@ -52,6 +52,14 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    UploadRequest:
+      type: object
+      required:
+      - filename
+      properties:
+        filename:
+          type: string
+          description: The filename of the file to upload. Must have a valid file extension corresponding to a supported media type (image, video, or audio).
     ErrorResponse:
       type: object
       properties:
@@ -76,14 +84,6 @@ components:
           description: A dictionary of form fields to include in the multipart POST request when uploading to the uploadUrl.
           additionalProperties:
             type: string
-    UploadRequest:
-      type: object
-      required:
-      - filename
-      properties:
-        filename:
-          type: string
-          description: The filename of the file to upload. Must have a valid file extension corresponding to a supported media type (image, video, or audio).
   parameters:
     RunwayVersion:
       name: X-Runway-Version
