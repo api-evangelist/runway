@@ -435,6 +435,12 @@ apis:
   - type: Documentation
     url: https://docs.dev.runwayml.com/usage/tiers/
 common:
+- type: Plans
+  url: plans/runway-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/runway-rate-limits.yml
+- type: FinOps
+  url: finops/runway-finops.yml
 - type: CapabilityMap
   url: capabilities/runway-capability-edges.yml
   name: Runway Business Capability Map
