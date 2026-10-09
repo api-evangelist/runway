@@ -148,3 +148,56 @@ plans:
       - name: Priority support
       - name: Internal tool integrations
       - name: Workspace Analytics
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units:
+  - credit
+  - period
+  plans:
+  - name: Free
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - one-time
+  - name: Standard
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - credit
+    - period
+    periods:
+    - month
+  - name: Pro
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - credit
+    - period
+    periods:
+    - month
+  - name: Unlimited
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - credit
+    - period
+    periods:
+    - month
+  - name: Enterprise
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - year
