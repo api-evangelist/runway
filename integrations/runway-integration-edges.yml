@@ -17,7 +17,52 @@ edges:
   matched_by: verified-token-table
   detected_by: sweep-model-routing.py
   first_seen: '2026-10-13'
+- partner_name: C2PA (Content Credentials conformance programme)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json
+  category: content provenance (Content Credentials) conformance
+  contract_reference:
+    register: C2PA conforming products list (c2pa-org/conformance-public)
+    spec_file: null
+    role: c2pa-conformant-applicant
+    registered_name: Runway AI, Inc.
+    register_id: Runway AI, Inc.
+    product_types:
+    - generatorProduct
+    assurance_levels:
+    - 1
+    spec_versions:
+    - '2.2'
+    media_types:
+    - audio/wav
+    - image/gif
+    - image/jpeg
+    - image/png
+    - image/webp
+    - video/mp4
+    - video/quicktime
+    products:
+    - product: Runway
+      record_id: 01a03b5e-0613-7c67-acff-bc3bded0cd49
+      conformance_date: '2026-09-15'
+    matched_domain: runwayml.com
+    matched_by: domain
+    identity: wikidata Q123367593 'Runway' P856 https://runwayml.com/
+    detected_by: sweep-media.py
+    detected: '2026-10-15'
+  detected_by: sweep-media.py
+  first_seen: '2026-10-15'
 generated: '2026-10-13'
 method: searched
 checked:
+- https://ddex.net/membership/current-members/
 - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+- https://raw.githubusercontent.com/c2pa-org/conformance-public/main/conforming-products/conforming-products-list.json
+source:
+- https://ddex.net/membership/current-members/
+- https://raw.githubusercontent.com/c2pa-org/conformance-public/main/conforming-products/conforming-products-list.json
