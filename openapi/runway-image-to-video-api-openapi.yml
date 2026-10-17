@@ -57,14 +57,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    RunwayVersion:
+      name: X-Runway-Version
+      in: header
+      required: true
+      description: API version identifier. Must be set to the exact value 2024-11-06.
+      schema:
+        type: string
+        enum:
+        - '2024-11-06'
   schemas:
-    TaskCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier for the created task. Use this ID to poll the task status endpoint.
     ErrorResponse:
       type: object
       properties:
@@ -74,6 +77,13 @@ components:
         code:
           type: string
           description: A machine-readable error code identifying the type of error.
+    TaskCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the created task. Use this ID to poll the task status endpoint.
     ImageToVideoRequest:
       type: object
       required:
@@ -111,16 +121,6 @@ components:
           - 720:1280
           - 832:1104
           - 960:960
-  parameters:
-    RunwayVersion:
-      name: X-Runway-Version
-      in: header
-      required: true
-      description: API version identifier. Must be set to the exact value 2024-11-06.
-      schema:
-        type: string
-        enum:
-        - '2024-11-06'
   securitySchemes:
     bearerAuth:
       type: http

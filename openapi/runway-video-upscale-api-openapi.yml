@@ -58,6 +58,15 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
     TaskCreatedResponse:
       type: object
       properties:
@@ -79,15 +88,6 @@ components:
         videoUri:
           type: string
           description: An HTTPS URL or runway:// URI pointing to the video to upscale.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
   parameters:
     RunwayVersion:
       name: X-Runway-Version

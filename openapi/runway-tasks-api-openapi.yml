@@ -74,6 +74,15 @@ paths:
       description: Production Server
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
     TaskResponse:
       type: object
       properties:
@@ -103,15 +112,6 @@ components:
         failure:
           type: string
           description: A description of the failure reason. Only present when the task status is FAILED.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
     TaskResponse_2:
       type: object
       properties:

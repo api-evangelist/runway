@@ -52,30 +52,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    PresetAvatarConfig:
-      type: object
-      required:
-      - type
-      - presetId
-      properties:
-        type:
-          type: string
-          description: Indicates this is a preset avatar configuration.
-          enum:
-          - preset
-        presetId:
-          type: string
-          description: The identifier of a preset avatar. Available presets include game-character, music-superstar, game-character-man, cat-character, influencer, tennis-coach, human-resource, fashion-designer, and cooking-teacher.
-          enum:
-          - game-character
-          - music-superstar
-          - game-character-man
-          - cat-character
-          - influencer
-          - tennis-coach
-          - human-resource
-          - fashion-designer
-          - cooking-teacher
     CustomAvatarConfig:
       type: object
       required:
@@ -91,6 +67,15 @@ components:
           type: string
           format: uuid
           description: The unique identifier of a custom avatar created via the avatars endpoint.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
     RealtimeSession:
       type: object
       properties:
@@ -116,6 +101,30 @@ components:
         roomName:
           type: string
           description: The name of the WebRTC room to join.
+    PresetAvatarConfig:
+      type: object
+      required:
+      - type
+      - presetId
+      properties:
+        type:
+          type: string
+          description: Indicates this is a preset avatar configuration.
+          enum:
+          - preset
+        presetId:
+          type: string
+          description: The identifier of a preset avatar. Available presets include game-character, music-superstar, game-character-man, cat-character, influencer, tennis-coach, human-resource, fashion-designer, and cooking-teacher.
+          enum:
+          - game-character
+          - music-superstar
+          - game-character-man
+          - cat-character
+          - influencer
+          - tennis-coach
+          - human-resource
+          - fashion-designer
+          - cooking-teacher
     CreateRealtimeSessionRequest:
       type: object
       required:
@@ -142,15 +151,6 @@ components:
         startScript:
           type: string
           description: Optional override for the avatar's opening script for this session only. If not provided, the avatar's default opening message is used.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
   parameters:
     RunwayVersion:
       name: X-Runway-Version

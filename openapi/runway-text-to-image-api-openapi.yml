@@ -58,13 +58,15 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    TaskCreatedResponse:
+    ErrorResponse:
       type: object
       properties:
-        id:
+        error:
           type: string
-          format: uuid
-          description: The unique identifier for the created task. Use this ID to poll the task status endpoint.
+          description: A human-readable error message describing what went wrong.
+        code:
+          type: string
+          description: A machine-readable error code identifying the type of error.
     TextToImageRequest:
       type: object
       required:
@@ -90,15 +92,13 @@ components:
           - 720:1280
           - 832:1104
           - 960:960
-    ErrorResponse:
+    TaskCreatedResponse:
       type: object
       properties:
-        error:
+        id:
           type: string
-          description: A human-readable error message describing what went wrong.
-        code:
-          type: string
-          description: A machine-readable error code identifying the type of error.
+          format: uuid
+          description: The unique identifier for the created task. Use this ID to poll the task status endpoint.
   parameters:
     RunwayVersion:
       name: X-Runway-Version

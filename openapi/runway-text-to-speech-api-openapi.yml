@@ -46,12 +46,6 @@ components:
     Unauthorized:
       description: Missing or invalid API secret.
   schemas:
-    TaskCreated:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The task id to poll on GET /tasks/{id}.
     TextToSpeechInput:
       type: object
       required:
@@ -67,6 +61,12 @@ components:
         voice:
           type: string
           description: Voice id.
+    TaskCreated:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The task id to poll on GET /tasks/{id}.
   securitySchemes:
     bearerAuth:
       type: http
