@@ -300,9 +300,10 @@ apis:
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
-  - Text-to-Image
+  - Image Generation
   tags_raw:
   - Text to Image
+  - Text-to-Image
   properties:
   - type: OpenAPI
     url: openapi/runway-text-to-image-api-openapi.yml
@@ -320,9 +321,10 @@ apis:
   humanURL: https://docs.dev.runwayml.com/api/
   baseURL: https://api.dev.runwayml.com/v1
   tags:
-  - Text-to-Video
+  - Video Generation
   tags_raw:
   - Text to Video
+  - Text-to-Video
   properties:
   - type: OpenAPI
     url: openapi/runway-text-to-video-api-openapi.yml
